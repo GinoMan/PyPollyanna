@@ -99,6 +99,9 @@ class Email:
             self.EmailHandler = SMTPHandler("creds.conf")
         else:
             self.EmailHandler = handler
+            
+    def __str__(self):
+        return f"To: {self.Recipient}\n{self.EmailTxtContent}"
     
     def SendEmail(self):
         return self.EmailHandler.SendEmail(self.Recipient, self.EmailContent, self.EmailTxtContent)

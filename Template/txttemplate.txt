@@ -1,3 +1,5 @@
+{% set reward = "Bragging Rights" %}
+
 # Hello {{ recipient }}! #
 
 ## You need to buy a gift for {{ assignedName }}. ##
@@ -7,7 +9,7 @@ The Vincenzini Pollyanna has begun! Your gift should be approximately *$50*. You
     ### {{ assignedNameFull }} ###
     ### {{ amazonWishList }} ###
 
-Please ensure that your gift arrives before Christmas so that your gift exchange can happen on time. We are doing a wrapping contest this year so be creative with the wrapping and after everyone opens presents, we will determine who has the best giftwrapping and they will win... something to be determined. If you have any questions, please respond to this email.
+Please ensure that your gift arrives before Christmas so that your gift exchange can happen on time. We are doing a wrapping contest this year so be creative with the wrapping and after everyone opens presents, we will determine who has the best giftwrapping and they will win {{ reward }}. If you have any questions, please respond to this email.
 
 Also, you will need to make sure that the items you want on *your* wishlist are on that list by *Saturday, December 4th 2021*.
 

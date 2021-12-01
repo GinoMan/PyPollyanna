@@ -20,20 +20,6 @@ class Person:
         self.IDNumber = int(csvLine["ID"])
         self.Spouse = int(csvLine["Spouse"] or 0)
         self.AlwaysGets = int(csvLine["I ALWAYS Get"] or 0)
-            
-    def mate(self, available: List):
-        locallyAvailable = available.copy()
-        removeGroup = [self.Spouse, self.AlwaysGets, self.IDNumber]
-        # remove spouse, and always get
-        
-        for person in locallyAvailable:
-            if removeGroup.__contains__(person.IDNumber):
-                locallyAvailable.remove(person)
-        if len(locallyAvailable) <= 0:
-            return None
-        pick = random.choice(locallyAvailable)
-        self.GiftsTo = pick
-        return pick
     
     def __str__(self):
         rep = f"{self.IDNumber} | {self.FullName} ({self.Name}): Married To ID: {self.Spouse} - "
@@ -49,6 +35,20 @@ class Person:
         else:
             rep += f"Not Assigned To Anyone..."
         return rep
+    
+    def mate(self, available: List):
+        locallyAvailable = available.copy()
+        removeGroup = [self.Spouse, self.AlwaysGets, self.IDNumber]
+        # remove spouse, and always get
+        
+        for person in locallyAvailable:
+            if removeGroup.__contains__(person.IDNumber):
+                locallyAvailable.remove(person)
+        if len(locallyAvailable) <= 0:
+            return None
+        pick = random.choice(locallyAvailable)
+        self.GiftsTo = pick
+        return pick
         
 class PollyannaGroup:
     people: list[Person]
@@ -79,6 +79,9 @@ class PollyannaGroup:
     
     def __iter__(self):
         return iter(self.people)
+    
+    def __len__(self):
+        return len(self.people)
     
     def shuffle(self):
         while True:
