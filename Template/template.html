@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% set background_color = "#AAAAFF" %}
+    {% set background_color_2 = "#FFFFFF" %}
+    {% set text_color = "#AA2266" %}
+    {% set due_date = "Saturday, December 4th 2021" %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Estonia">
+    <title>Pollyanna Assignment</title>
+    <style>
+        body { 
+            background-color: {{ background_color }}; 
+            background-image: linear-gradient({{ background_color }}, {{ background_color_2 }}); 
+            color: {{ text_color }}; 
+        }
+        caption { font-size: 50%; }
+        img { width: 100%; }
+        p { font-size: 15pt; }
+        h1, h2 { text-align: center; font-family: Estonia, fantasy; font-size: 200%; }
+        .wishlist { text-align: center; }
+        .mainBody { width: 80%; margin-left: 10%; margin-right: 10%; }
+        .bold { font-weight: bold; }
+        .highlight { font-weight: bold; color: #003388 }
+    </style>
+</head>
+<body class="mainBody">
+    <h1>Hello {{ recipient }}!</h1>
+    <h2>You need to buy a gift for <span class="highlight">{{ assignedName }}</span></h2>
+    <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" 
+        alt="Image of Christmas Presents; Photo by freestocks on Unsplash" />
+    <caption>Photo by <a href="https://unsplash.com/@freestocks?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">freestocks</a> 
+        on <a href="https://unsplash.com/s/photos/gifts?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></caption>
+    <p>The Vincenzini Pollyanna has begun! Your gift should be approximately <span class="bold">$50</span>. You can find their Amazon wish list here:</p>
+    <h3 class="wishlist bold highlight">{{ assignedNameFull }}</h3>
+    <h3 class="wishlist"><a href="{{ amazonWishList }}">Amazon Wish List</a></h3>
+    <p>Please ensure that your gift arrives before Christmas so that your gift exchange can happen on time. We are doing 
+    a wrapping contest this year so be creative with the wrapping and after everyone opens presents, we will determine 
+    who has the best giftwrapping and they will win... something to be determined. If you have any questions, please 
+    respond to this email.</p>
+    <p>Also, you will need to make sure that the items you want on <span class="bold">your</span> wishlist are on that list 
+    by <span class="bold">{{ due_date }}</span>.</p>
+    <p>Thank you!</p>
+    <p>Gino</p>
+    <hr/>
+    <p>P.S. - If you get your spouse, or yourself, please email me immediately.</p>
+</body>
+</html>
