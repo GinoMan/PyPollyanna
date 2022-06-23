@@ -1,7 +1,6 @@
 __pycache__
 .venv
 OutputMessages
-.vscode
 .git
 .pytest_cache
 creds.conf

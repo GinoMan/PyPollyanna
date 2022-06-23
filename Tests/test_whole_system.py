@@ -1,10 +1,11 @@
-from Person import PollyannaGroup
+from Person import PollyannaGroup, Person
 from SendEmail import Email, TXTHandler
 from Templates import EmailTemplate
-from minify_html import minify
+from minify_html.minify_html import minify
 from main import save_csv, display_example
 from datetime import datetime
 from os import path
+
 
 def test_whole_system(capsys):
 	group = PollyannaGroup('data.csv')
@@ -22,7 +23,8 @@ def test_whole_system(capsys):
 		result = email.SendEmail()
 		with capsys.disabled():
 			print(result)
-			
+
+
 def test_email_system_by_sending_to_self(capsys):
 	group = PollyannaGroup('data.csv')
 	group.shuffle()
@@ -36,7 +38,8 @@ def test_email_system_by_sending_to_self(capsys):
 		txt = txtTemplate.render_for_person(person)
 		email = Email('OpenMySourceCode@gmail.com', html, txt)
 		email.SendEmail()
-		
+
+
 def test_save_csv(capsys):
 	group = PollyannaGroup('data.csv')
 	group.shuffle()
@@ -44,9 +47,11 @@ def test_save_csv(capsys):
 	save_csv(group)
 	
 	with capsys.disabled():
-		with open(path.expanduser(f'~/{datetime.now().year} pollyanna assignments.csv'), 'r') as csvFile:
+		with open(path.expanduser(f'~/{datetime.now().year} '
+			'pollyanna assignments.csv'), 'r') as csvFile:
 			print(csvFile.read())
-	
+
+
 def test_display_example(capsys):
 	group = PollyannaGroup('data.csv')
 	group.shuffle()
@@ -58,3 +63,16 @@ def test_display_example(capsys):
 		display_example(person, template, txtTemplate)
 		break
 	
+
+def test_person_to_string(capsys):
+	a = Person({
+		"Name": "Gino",
+		"Full Name": "GinoMan",
+		"Email Address": "foo@bar.com",
+		"Amazon Wishlist": "google.com",
+		"ID": "7",
+		"Spouse": "10",
+		"I ALWAYS Get": "3"
+	})
+	assert(str(a) == "7 | GinoMan (Gino): Married To ID: 10 - "
+	"Not Assigned To Anyone...")

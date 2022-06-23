@@ -6,7 +6,7 @@ from colorama import init, deinit, Fore, Back, Style
 from random import choice
 from progress.bar import IncrementalBar
 
-from minify_html import minify
+from minify_html.minify_html import minify
 
 from Person import PollyannaGroup
 from SendEmail import Email, TXTHandler
@@ -16,11 +16,14 @@ from Templates import EmailTemplate
 def save_csv(group: PollyannaGroup):
 	# create a csv file of the results:
 	# name, full-name, email-address, amazon-link, who-assigned-to
-	filename = path.expanduser(f'~/{datetime.now().year} pollyanna assignments.csv')
+	filename = path.expanduser(f'~/{datetime.now().year} '
+		'pollyanna assignments.csv')
 	with open(filename, 'w') as csvFile:
-		csvFile.write(f"Full Name, Email Address, Assigned, Assigned Amazon Link\n")
+		csvFile.write("Full Name, Email Address, Assigned, Assigned Amazon Link\n")
 		for person in group:
-			csvFile.write(f"{person.FullName}, {person.EmailAddress}, {person.GiftsTo.FullName}, {person.GiftsTo.AmazonLink}\n")
+			csvFile.write(f"{person.FullName}, {person.EmailAddress},"
+			f"{person.GiftsTo.FullName}, {person.GiftsTo.AmazonLink}\n")
+
 
 def display_example(person, template, txtTemplate):
 	# create template with person
@@ -35,6 +38,7 @@ def display_example(person, template, txtTemplate):
 		htmlFile.write(render)
 	system(f"start {tempFile}")
 	pass
+
 
 def main():
 	init()
@@ -69,7 +73,8 @@ def main():
 	if not answer2.capitalize().startswith('Y'):
 		quit()
 	
-	with IncrementalBar('Emailing Recipients', max=10, suffix='%(percent).1f%% - %(eta)ds') as bar:
+	with IncrementalBar('Emailing Recipients', max=10,
+		suffix='%(percent).1f%% - %(eta)ds') as bar:
 		for person in group:
 			render = template.render_for_person(person)
 			html = minify(render, minify_js=True, remove_processing_instructions=True)
@@ -79,6 +84,7 @@ def main():
 			bar.next()
 		
 	deinit()
+
 
 if (__name__ == "__main__"):
 	main()

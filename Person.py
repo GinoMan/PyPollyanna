@@ -2,6 +2,7 @@ import csv
 import random
 from typing import List
 
+
 class Person:
 	Name = ""
 	FullName = ""
@@ -10,7 +11,7 @@ class Person:
 	IDNumber = 0
 	Spouse = 0
 	AlwaysGets = 0
-	GiftsTo = None
+	GiftsTo: 'Person'
 	
 	def __init__(self, csvLine: dict):
 		self.Name = csvLine["Name"]
@@ -22,7 +23,8 @@ class Person:
 		self.AlwaysGets = int(csvLine["I ALWAYS Get"] or 0)
 	
 	def __str__(self):
-		rep = f"{self.IDNumber} | {self.FullName} ({self.Name}): Married To ID: {self.Spouse} - "
+		rep = (f"{self.IDNumber} | {self.FullName} ({self.Name})"
+		f": Married To ID: {self.Spouse} - ")
 		# rep += "\n\t"
 		# if self.AlwaysGets > 0:
 		#     rep += f"Always Gets ID: {self.AlwaysGets}\n\t"
@@ -33,7 +35,7 @@ class Person:
 		if self.GiftsTo is not None:
 			rep += f"Assigned To: {self.GiftsTo.Name}"
 		else:
-			rep += f"Not Assigned To Anyone..."
+			rep += "Not Assigned To Anyone..."
 		return rep
 	
 	def mate(self, available: List):
@@ -50,6 +52,7 @@ class Person:
 		self.GiftsTo = pick
 		return pick
 		
+
 class PollyannaGroup:
 	people: list[Person]
 	assignments: dict[Person, int]
@@ -57,7 +60,8 @@ class PollyannaGroup:
 	def __init__(self, fileName):
 		self.people = []
 		with open(fileName, newline='\n', encoding="UTF-8-sig") as csvfile:
-			reader = csv.DictReader(csvfile, delimiter=',', quotechar='"', skipinitialspace = True)
+			reader = csv.DictReader(csvfile, delimiter=',',
+			quotechar='"', skipinitialspace=True)
 			for row in reader:
 				self.people.append(Person(row))
 	
@@ -94,7 +98,8 @@ class PollyannaGroup:
 					possible.remove(item)
 				# use the mate function
 				assignment = person.mate(possible)
-				# if the assignment is none, then there's nobody else they can have so we must trade
+				# if the assignment is none,
+				# then there's nobody else they can have so we must trade
 				if assignment is None:
 					breakCondition = False
 					break

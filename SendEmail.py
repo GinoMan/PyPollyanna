@@ -24,16 +24,18 @@ class SMTPHandler:
 	
 	def SendEmail(self, destination: str, content: str, txtcontent: str):
 		msg = MIMEMultipart('alternative')
-		msg['Subject'] = "Polyanna Assignment for Christmas 2021"
-		msg['From'] = self.username
+		msg['Subject'] = ("Polyanna Assignment for "
+		f"{self.config['FACILITATOR']['Event']}")
+		msg['From'] = f"{self.config['FACILITATOR']['Name']} <{self.username}>"
 		msg['To'] = destination
+
 		if (txtcontent is not None):
-			msg.attach(MIMEText(txtcontent, 'plain')) 
+			msg.attach(MIMEText(txtcontent, 'plain'))
 		if (content is not None):
-			msg.attach(MIMEText(content, 'html')) 
+			msg.attach(MIMEText(content, 'html'))
+
 		# self.system.set_debuglevel(1)
 		self.system.sendmail(self.username, [destination], msg.as_string())
-		
 	
 	def __init__(self, configFilePath: str):
 		self.config = configparser.ConfigParser()
@@ -53,7 +55,8 @@ class SMTPHandler:
 	def __del__(self):
 		self.system.quit()
 		del(self.system)
-		
+
+
 class TXTHandler:
 	def SendEmail(self, destination: str, content: str, txtcontent: str):
 		fileName = re.sub("@.*", "", destination)
@@ -63,8 +66,10 @@ class TXTHandler:
 			os.mkdir(outputDir)
 		fileName = os.path.join(outputDir, fileName)
 		with (open(fileName, "w")) as email:
-			email.write(f"Subject: Polyanna Assignment for Christmas 2021\n")
-			email.write(f"From: Gino.F.Vincenzini@gmail.com\n")
+			# The next two lines need to be changed
+			# to allow for other facilitators and events
+			email.write("Subject: Polyanna Assignment\n")
+			email.write("From: Facilitator@pollyanna.com\n")
 			email.write(f"To: {destination}\n")
 			email.write("\n")
 			email.write("---TXT---\n")
@@ -77,13 +82,13 @@ class TXTHandler:
 			
 		with (open(fileName, "r")) as txtfile:
 			return txtfile.readlines()
-		pass
 	
-	def __init__(self, configFilePath: str = None):
+	def __init__(self, configFilePath: str = ""):
 		pass
 	
 	def __del__(self):
 		pass
+
 
 class Email:
 	Recipient = ""
@@ -104,4 +109,5 @@ class Email:
 		return f"To: {self.Recipient}\n{self.EmailTxtContent}"
 	
 	def SendEmail(self):
-		return self.EmailHandler.SendEmail(self.Recipient, self.EmailContent, self.EmailTxtContent)
+		return self.EmailHandler.SendEmail(self.Recipient,
+		self.EmailContent, self.EmailTxtContent)

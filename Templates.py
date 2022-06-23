@@ -4,6 +4,7 @@ import minify_html
 import typing
 import types
 
+
 class EmailTemplate:
 	recipient = ""
 	assignedName = ""
@@ -30,9 +31,11 @@ class EmailTemplate:
 	
 	# render
 	def render_for_person(self, person: Person):
-		return self.render_and_assign(person.Name, person.GiftsTo.Name, person.GiftsTo.FullName, person.GiftsTo.AmazonLink)
+		return self.render_and_assign(person.Name, person.GiftsTo.Name,
+		person.GiftsTo.FullName, person.GiftsTo.AmazonLink)
 	
-	def render_and_assign(self, recipient, assignedName, assignedNameFull, amazonWishList) -> str:
+	def render_and_assign(self, recipient, assignedName, assignedNameFull,
+		amazonWishList) -> str:
 		self.set_values(recipient, assignedName, assignedNameFull, amazonWishList)
 		return self.render()
 		
