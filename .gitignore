@@ -1,7 +1,6 @@
 __pycache__
 .venv
 OutputMessages
-.git
 .pytest_cache
 creds.conf
 data.csv
