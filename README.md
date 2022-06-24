@@ -14,7 +14,7 @@ Third, create an ini file named "creds.conf" following the format in the section
 
 Then, change the templates to include proper descriptions of your event and parameters.
 
-Finally, download the requirements from pip using requirements.txt
+Finally, download the requirements from pip using requirements.txt; You must be on Python 3.9 or above to run the program.
 
 And you're ready. Go ahead and run main.py in the terminal.
 

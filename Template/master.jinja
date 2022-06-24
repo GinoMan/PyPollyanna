@@ -1,0 +1,24 @@
+{% set reward = reward|default("Bragging Rights") %}
+{% set event_name = event_name|default("Christmas 2022") %}
+{% set spending_limit = spending_limit|default("$50") %}
+{% set facilitator = facilitator|default("Your Name Here") %}
+{% set default_due_date %}{{ (date.today() + timedelta(days=7)).strftime("%A, %B %d, %Y") }}{% endset %}
+{% set due_date = due_date|default(default_due_date) %}
+{%- set hr %}
+------------------------------------------------------------------------------------
+{% endset -%}
+{# not yet implemented}{% set contest = contest|default(true) %}{#}
+
+{%- set greeting %}{{ "<h1>" if html else "# " }}Hello {{ recipient }}!{{ "</h1>" if html else " #\n" }}{{ "<h2>" if html else "\n## " }}You need to buy a gift for {{ "<span class=\"highlight\">" if html }}{{ assignedName }}{{ "</span>" if html }}.{{ "</h2>" if html else " ##\n" }}{% endset -%}
+
+{%- set amount_statement %}{{ "<p>" if html }}The {{ event_name }} Pollyanna has begun! Your gift should be approximately {{ "<span class=\"bold\">" if html else "*" }}{{ spending_limit }}{{ "</span>" if html else "*" }}. You can find their Amazon wish list here:{{ "</p>" if html else "\n" }}{% endset -%}
+
+{%- set name_statement %}{{ "<h3 class=\"wishlist bold highlight\">" if html else "\t### " }}{{ assignedNameFull }}{{ "</h3>" if html else " ###" }}{{ "<h3 class=\"wishlist\"><a href=\"" if html else "\n\t### " }}{{ amazonWishList }}{{ "\" target=\"_blank\">Amazon Wish List</a></h3>" if html else " ###\n" }}{% endset -%}
+
+{%- set body_statement %}{{ "<p>" if html }}Please ensure that your gift arrives before {{ event_name }} so that your gift exchange can happen on time. We are doing a wrapping contest this year so be creative with the wrapping and after everyone opens presents, we will determine who has the best giftwrapping and they will win {{ reward }}. If you have any questions, please respond to this email.{{ "</p>" if html else "\n" }}{% endset -%}
+
+{%- set wishlist_statement %}{{ "<p>" if html }}Also, you will need to make sure that the items you want on {{ "<span class=\"bold\">" if html else "*" }}your{{ "</span>" if html else "*" }} wishlist are on that list by {{ "<span class=\"bold\">" if html else "*" }}{{ due_date }}{{ "</span>" if html else "*" }}.{{ "</p>" if html else "\n" }}{% endset -%}
+
+{%- set footer_block %}{{ "<p>" if html }}Thank you!{{ "</p>" if html else "\n" }}{{ "<p>" if html else "\n" }}{{ facilitator }}{{ "</p>" if html else "\n" }}{{ "<hr/>" if html else "\n" ~ hr }}{{ "<p>" if html else "\n" }}P.S. - If you were assigned your spouse, or yourself, please email me immediately.{{ "</p>" if html else "\n" }}{% endset -%}
+
+{%- block page %}{% endblock -%}

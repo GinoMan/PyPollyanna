@@ -1,0 +1,10 @@
+{% extends "master.jinja" %}
+{% set html = html|default(false) %}
+{%- block page %}
+{{ greeting }}
+{{ amount_statement }}
+{{ name_statement }}
+{{ body_statement }}
+{{ wishlist_statement }}
+{{ footer_block }}
+{%- endblock -%}

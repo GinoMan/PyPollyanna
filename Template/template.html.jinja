@@ -1,0 +1,47 @@
+{% extends "master.jinja" %}
+{% set html = html|default(true) %}
+{%- block page %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% set background_color = "#AAAAFF" %}
+    {% set background_color_2 = "#FFFFFF" %}
+    {% set text_color = "#AA2266" %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Estonia">
+    <title>Pollyanna Assignment - {{ recipient }}</title>
+    <style>{% raw %}
+        body {
+{% endraw %}
+            background-color: {{ background_color }}; 
+            background-image: linear-gradient({{ background_color }}, {{ background_color_2 }}); 
+            color: {{ text_color }};{% raw %}
+        }
+        caption { font-size: 50%; }
+        img { width: 100%; }
+        p { font-size: 15pt; }
+        h1, h2 { text-align: center; font-family: Estonia, fantasy; font-size: 200%; }
+        .wishlist { text-align: center; }
+        .mainBody { width: 80%; margin-left: 10%; margin-right: 10%; }
+        .bold { font-weight: bold; }
+        .highlight { font-weight: bold; color: #003388 }
+        .footer { height: 20vh; }
+{% endraw %}
+    </style>
+</head>
+<body class="mainBody">
+    {{ greeting }}
+    <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" 
+        alt="Image of Christmas Presents; Photo by freestocks on Unsplash" />
+    <caption>Photo by <a href="https://unsplash.com/@freestocks?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">freestocks</a> 
+        on <a href="https://unsplash.com/s/photos/gifts?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></caption>
+    {{ amount_statement }}
+    {{ name_statement }}
+    {{ body_statement }}
+    {{ wishlist_statement }}
+    {{ footer_block }}
+    <div class="footer"></div>
+</body>
+</html>{% endblock -%}

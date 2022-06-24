@@ -37,15 +37,18 @@ def display_example(person, template, txtTemplate):
 	with open(f"{tempFile}", 'w') as htmlFile:
 		htmlFile.write(render)
 	system(f"start {tempFile}")
-	pass
 
 
 def main():
 	init()
+
+	testing_mode = False
 	
 	print(Back.RED + Fore.BLACK)
 	print("WELCOME TO THE POLLYANNA LOTTERY SYSTEM")
 	print(Style.RESET_ALL)
+
+	facilitator = input("Please Enter your full name here: ")
 	
 	group = PollyannaGroup('data.csv')
 	group.shuffle()
@@ -58,13 +61,15 @@ def main():
 	print(Style.RESET_ALL)
 	answer = input(Fore.RED + "Is This Correct? [Y/N]: ")
 	if not answer.capitalize().startswith('Y'):
+		print(Style.RESET_ALL)
 		quit()
 	# If they're correct, save them in a text file in the user's dir
 	print(Style.RESET_ALL)
 	save_csv(group)
 	
-	template = EmailTemplate('Template', 'template.html')
-	txtTemplate = EmailTemplate('Template', 'txttemplate.txt', False)
+	template = EmailTemplate('Template', 'template.html.jinja', facilitator)
+	txtTemplate = EmailTemplate('Template', 'txttemplate.txt.jinja',
+		facilitator, False)
 	
 	display_example(choice(group.people), template, txtTemplate)
 	
@@ -79,7 +84,10 @@ def main():
 			render = template.render_for_person(person)
 			html = minify(render, minify_js=True, remove_processing_instructions=True)
 			txt = txtTemplate.render_for_person(person)
-			email = Email(person.EmailAddress, html, txt)
+			if testing_mode:
+				email = Email(person.EmailAddress, html, txt, TXTHandler())
+			else:
+				email = Email(person.EmailAddress, html, txt)
 			email.SendEmail()
 			bar.next()
 		
