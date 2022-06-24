@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-{% set reward = "Bragging Rights" %}
-{% set event_name = "Christmas 2022" %}
-{% set spending_limit = "$50" %}
-{% set facilitator = "Your Name Here" %}
-{% set due_date = "Saturday, December 4th 2021" %}
+{% set reward = reward|default("Bragging Rights") %}
+{% set event_name = event_name|default("Christmas 2022") %}
+{% set spending_limit = spending_limit|default("$50") %}
+{% set facilitator = facilitator|default("Your Name Here") %}
+{% set due_date = due_date|default(date.today() + timedelta(days=7)) %}
 <html lang="en">
 <head>
     {% set background_color = "#AAAAFF" %}
@@ -15,10 +15,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Estonia">
     <title>Pollyanna Assignment</title>
     <style>
+		{% raw %}
         body { 
+		{% endraw %}
             background-color: {{ background_color }}; 
             background-image: linear-gradient({{ background_color }}, {{ background_color_2 }}); 
-            color: {{ text_color }}; 
+            color: {{ text_color }};
+		{% raw%}
         }
         caption { font-size: 50%; }
         img { width: 100%; }
@@ -29,6 +32,7 @@
         .bold { font-weight: bold; }
         .highlight { font-weight: bold; color: #003388 }
         .footer { height: 20vh; }
+		{% endraw %}
     </style>
 </head>
 <body class="mainBody">

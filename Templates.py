@@ -21,11 +21,11 @@ class EmailTemplate:
 		if(html):
 			env.trim_blocks = True
 			env.lstrip_blocks = True
-			env.rstrip_blocks = True
+			# env.rstrip_blocks = True	# Doesn't exist?
 		else:
-			env.lstrip_blocks = False
-			env.rstrip_blocks = False
 			env.trim_blocks = False
+			env.lstrip_blocks = False
+			# env.rstrip_blocks = False	# Doesn't exist?
 		self.filename = filename
 		self.env = env
 	
@@ -48,7 +48,8 @@ class EmailTemplate:
 			amazonWishList=self.amazonWishList)
 		return self.rendering
 		
-	def set_values(self, recipient, assignedName, assignedNameFull, amazonWishList):
+	def set_values(self, recipient, assignedName,
+		assignedNameFull, amazonWishList):
 		self.recipient = recipient
 		self.assignedName = assignedName
 		self.assignedNameFull = assignedNameFull
