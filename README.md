@@ -1,22 +1,17 @@
 # PyPollyanna #
 
-Christmas is almost here and it's time to pick who's gifting to whom this Christmas. You can always get your group together and pick names out of a hat, but the problem is that you sometimes people will pick their significant other (so why have a Pollyanna for them), or they pick themselves and have to draw again. So what to do? How about let the computer make sure that everything is fine?
+Christmas is almost here and it's time to pick who's gifting to whom this Christmas. You can always get your group together and pick names out of a hat, but the problem is that sometimes people will pick their significant other \(so why have a Pollyanna for them\), or they pick themselves and have to draw again. So what to do? How about let the computer make sure that everything is fine?
 
-That's where PyPollyanna comes in. I wrote it for my own family's yearly Pollyanna and we're currently using it this year. The program reads a list of participants from a CSV file, parses it into a list of people, and then pairs them up according to their parameters (who their spouse is, who they feel like they always get, etc). It then creates an email to each of them and sends them a personalized email with their partner's name and amazon wish list.
+That's where PyPollyanna comes in. I wrote it for my own family's yearly Pollyanna and we're currently using it this year. The program reads a list of participants from a CSV file, parses it into a list of people, and then pairs them up according to their parameters \(who their spouse is, who they feel like they always get, etc.\). It then creates an email to each of them and sends them a personalized email with their partner's name and amazon wish list.
 
 ## Getting Started ##
 
-First, you need your participants to register with you to fill out the CSV. I recommend sending them all a link to a google form with some questions (Who do you always get, what's your amazon wish list, etc). Then download the data and arrange it into a CSV file with the format described in the section "CSV".
-
-Next, you put the csv file in the project directory with the name "data.csv".
-
-Third, create an ini file named "creds.conf" following the format in the section "Credential Config File" in the project directory.
-
-Then, change the templates to include proper descriptions of your event and parameters.
-
-Finally, download the requirements from pip using requirements.txt; You must be on Python 3.9 or above to run the program.
-
-And you're ready. Go ahead and run main.py in the terminal.
+1. You need your participants to register with you to fill out the CSV. I recommend sending them all a link to a google form with some questions \(Who do you always get, what's your amazon wish list, etc\). Then download the data and arrange it into a CSV file with the format described in the section "CSV".
+2. You put the csv file in the project directory with the name "data.csv".
+3. Create an ini file named "creds.conf" following the format in the section "Credential Config File" in the project directory.
+4. Change the templates to include proper descriptions of your event and parameters.
+5. Download the requirements from pip using requirements.txt; You must be on Python 3.9 or above to run the program.
+6. And you're ready. Go ahead and run main.py in the terminal, and follow the prompts.
 
 That's it! You've got a Pollyanna list and all of your participants have been emailed with whom they should buy a gift for.
 
@@ -32,13 +27,26 @@ Otherwise, the program will not load it correctly. Each entry must be on a separ
 
 ```csv
 ID,Name,Full Name,I ALWAYS Get,Spouse,Email Address,Amazon Wishlist
-1,Gino,Gino Vincenzini,-1,2,contrived@contoso.com,https://www.amazon.com/wishlist
-2,Cella,Marcela Vincenzini,-1,1,cella@contoso.com,https://www.amazon.com/wishlist
+1,Gino,Gino Contoso,-1,2,gino@contoso.com,https://www.amazon.com/wishlist
+2,Cella,Marcela Contoso,-1,1,cella@contoso.com,https://www.amazon.com/wishlist
 ```
 
-You will need a minimum of 3 unmarried people or 3 couples since built into the rules is the assumption that you cannot get your spouse for Pollyanna. This is because it is assumed that spouses will separately get each other gifts regardless the Pollyanna.
+You can also open CSV files in Excel or OpenOffice/LibreOffice Calc. In that case it will be a table like this:
 
-## Credential Config File ##
+__ID__ | __Name__ | __Full Name__   | __I ALWAYS Get__ | __Spouse__ | __Email Address__ | __Amazon Wishlist__
+-----: | -------- | --------------- | :--------------: | :--------: | ----------------- | ---------------------------------
+1      | Gino     | Gino Contoso    | -1               | 2          | gino@contoso.com  | <https://www.amazon.com/wishlist>
+2      | Cella    | Marcela Contoso | -1               | 1          | cella@contoso.com | <https://www.amazon.com/wishlist>
+
+You will need a minimum of three unmarried people or two couples since built into the rules is the assumption that you cannot get your spouse for Pollyanna. This is because it is assumed that spouses will separately get each other gifts regardless the Pollyanna.
+
+The fields which aren't obvious are explained below:
+
+- __"ID"__ - This is a unique number, easiest just to start at 1 and increase from there
+- __"I ALWAYS Get"__ - This is the ID of someone the person feels like they get every year or most years. The program will try to avoid assigning that person to them.
+- __"Spouse"__ - This is the ID of the person's spouse. *Note: Both spouses should list the other partner.*
+
+## Credential Config File \(creds.conf\) ##
 
 The creds.conf file contains a listing of the information needed to make a secure connection to an email SMTP server to send out the notification emails to your participants so they know who has which participant for gift exchange, and what that person's amazon wishlist link is. The file is formatted like an INI file from windows config files and must contain the following section and keys (and your own settings rather than the contrived data below):
 
@@ -60,32 +68,55 @@ The Email must be the email address that you use to log into the server. The Pas
 - "TLS"
 - "None"
 
-The Facilitator section includes the name of the facilitator and the name of the event they are facilitating a Pollyanna for.
+The Facilitator section includes the name of the facilitator and the name of the event they are facilitating a Pollyanna for. It also specifies the prize/reward for winning the contest.
 
 ## Templates ##
 
 There are two templates in the "Template" folder and these are used for the email that is sent to everyone. In the future, they will be normalized so as not to require changes to both.  
 
+### Master Template ###
+
+The Master Template contains all of the common text between both types of emails. The defaults for the variables can be edited by the user and the information omitted but that's not the preferred way to handle changes to the information. Facilitator for examples can be specified on the command line, gained from the config file, or obtained interactively by the program.
+
+- `reward` - The default email contains an invitation to participate in a voted gift wrapping contest. The participants are told the winner will receive this reward.
+- `event_name` - The default email begins by announcing the beginning of the Pollyanna for a particular event \(Christmas, Hanukkah, Etc.\). This is where you name that event.
+- `spending_limit` - A string describing the dollar amount total a gift or gifts should be to keep the gift giving fair.
+- `facilitator` - The name of the person facilitating the event and thus sending the email.
+- `due_date` - The cut-off after which people can buy gifts for each other. It's a last chance to edit your wishlist before the recipient of the list begins buying gifts for their assignment.
+
 ### HTML Template ###
 
 The HTML template is for the rich-text version of the email. By default, it has some colors and images and the CSS for the email all in one file. It also has variables at the top that can be modified to contain more appropriate information. The variables not defined at the top of the template are used by the program to fill in for each individual recipient. They are:
 
-`reward` - The default email contains an invitation to participate in a voted gift wrapping contest. The participants are told the winner will receive this reward.
-
-`event_name` - The default email begins by announcing the beginning of the Pollyanna for a particular event (Christmas, Hanukkah, Etc.). This is where you name that event.
-
-`spending_limit` - A string describing the dollar amount total a gift or gifts should be to keep the gift giving fair.
-
-`facilitator` - The name of the person facilitating the event and thus sending the email.
-
-`due_date` - The cut-off after which people can buy gifts for each other. It's a last chance to edit your wishlist before the recipient of the list begins buying gifts for their assignment.
-
-`background_color & background_color_2` - Hex code as a string for the colors used for the background of the email.
-
-`text_color` - color for the text to contrast against the backgrounds.
+- `background_color & background_color_2` - Hex code as a string for the colors used for the background of the email.
+- `text_color` - color for the text to contrast against the backgrounds.
 
 ### Text Template ###
 
 Some Email clients are unable to render HTML or the email service might not support HTML Emails. In that case, a plaintext version is sent along with the message so that those clients can correctly render the information for the user.
 
 It includes all of the same variables as the HTML Template except the colors.
+
+## Command Line Interface ##
+
+Most people will just write the files themselves and run the program as is. But if you want to, you may specify some information on the command-line. The command is in the format:
+
+main.py \[-h\] \[-t\] \[-f FACILITATOR\] \[-q\] \[-n | -p PRIZE\]
+
+- __-h, --help__ - Shows the help message and exits
+- __-t, --test__ - Do not send the final Emails, instead save them into a file
+- __-f FACILITATOR, --facilitator FACILITATOR__ - The name of the person facilitating the Pollyanna
+- __-q, --quiet__ - Determines whether or not to display sample emails
+- __-n, --no-contest__ - Whether or not to host the gift-wrapping contest. Cannot use with `-p`
+- __-p PRIZE, --prize PRIZE__ - The winner of the gift-wrapping contest receives this \(e.g. "A $100 Amazon Gift Card"\)
+
+## Road Map ##
+
+1. Add command-line options to specify config files
+2. Prompt the user to enter people and generate the source CSV file manually if it's empty, missing, insufficient[^1], or improperly formatted[^2].
+3. Allow the end user to specify additional variables to use for the templates
+4. Automatically test email system before attempting to send emails.
+5. Make more options specified on the command line.
+
+[^1]: "insufficient" means that it doesn't reflect enough people.
+[^2]: "improperly formatted* means that it doesn't have all of the columns it must have at minimum.

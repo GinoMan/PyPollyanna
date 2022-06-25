@@ -1,9 +1,17 @@
+from datetime import date, timedelta
 from jinja2 import FileSystemLoader, Environment, Template
 from Person import Person
-from datetime import date, timedelta
-import minify_html
-import typing
-import types
+
+
+class ContestSettings:
+	facilitator: str = ""
+	contest: bool = True
+	prize: str = "Bragging Rights"
+
+	def __init__(self, facilitator, prize="Bragging Rights", contest=True):
+		self.facilitator = facilitator
+		self.prize = prize
+		self.contest = contest
 
 
 class EmailTemplate:
@@ -17,8 +25,10 @@ class EmailTemplate:
 	rendering: str
 	is_html: bool
 	facilitator: str
+	contest: bool
 	
-	def __init__(self, templateDirectory, filename, facilitator, html=True):
+	def __init__(self, templateDirectory, filename, settings: ContestSettings,
+		html=True):
 		file_loader = FileSystemLoader(templateDirectory)
 		env = Environment(loader=file_loader)
 		if(html):
@@ -32,8 +42,10 @@ class EmailTemplate:
 		self.filename = filename
 		self.env = env
 		self.is_html = html
-		self.facilitator = facilitator
-	
+		self.facilitator = settings.facilitator
+		self.contest = settings.contest
+		self.prize = settings.prize
+
 	# render
 	def render_for_person(self, person: Person):
 		return self.render_and_assign(person.Name, person.GiftsTo.Name,
@@ -53,6 +65,8 @@ class EmailTemplate:
 			amazonWishList=self.amazonWishList,
 			html=self.is_html,
 			facilitator=self.facilitator,
+			contest=self.contest,
+			reward=self.prize,
 			date=date,
 			timedelta=timedelta)
 		return self.rendering

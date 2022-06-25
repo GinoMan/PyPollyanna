@@ -59,8 +59,8 @@ class PollyannaGroup:
 	
 	def __init__(self, fileName):
 		self.people = []
-		with open(fileName, newline='\n', encoding="UTF-8-sig") as csvfile:
-			reader = csv.DictReader(csvfile, delimiter=',',
+		with open(fileName, newline='\n', encoding="UTF-8-sig") as csv_file:
+			reader = csv.DictReader(csv_file, delimiter=',',
 			quotechar='"', skipinitialspace=True)
 			for row in reader:
 				self.people.append(Person(row))
