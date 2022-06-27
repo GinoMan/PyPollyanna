@@ -42,6 +42,16 @@ That's where PyPollyanna comes in. I wrote it for my own family's yearly Pollyan
 - [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
 - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
 
+## Code Documentation ##
+
+1. [Main.PY](https://github.com/GinoMan/PyPollyanna/blob/master/docs/main.md)
+1. [Person.PY](https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md)
+1. [SendEmail.PY](https://github.com/GinoMan/PyPollyanna/blob/master/docs/sendemail.md)
+1. [Templates.PY](https://github.com/GinoMan/PyPollyanna/blob/master/docs/templates.md)
+1. [Tests](https://github.com/GinoMan/PyPollyanna/blob/master/docs/tests.md)
+1. [Data.csv](https://github.com/GinoMan/PyPollyanna/blob/master/docs/data.md)
+1. [Creds.conf](https://github.com/GinoMan/PyPollyanna/blob/master/docs/creds.md)
+
 ## Getting Started ##
 
 1. You need your participants to register with you to fill out the CSV. I recommend sending them all a link to a google form with some questions \(Who do you always get, what's your amazon wish list, etc\). Then download the data and arrange it into a CSV file with the format described in the section "CSV".
