@@ -4,6 +4,44 @@ Christmas is almost here and it's time to pick who's gifting to whom this Christ
 
 That's where PyPollyanna comes in. I wrote it for my own family's yearly Pollyanna and we're currently using it this year. The program reads a list of participants from a CSV file, parses it into a list of people, and then pairs them up according to their parameters \(who their spouse is, who they feel like they always get, etc.\). It then creates an email to each of them and sends them a personalized email with their partner's name and amazon wish list.
 
+## Requirements ##
+
+### Runtime Requirements ###
+
+- Python Version: 3.9+
+- [colorama](https://pypi.org/project/colorama/): 0.4.4
+- [Jinja2](https://pypi.org/project/Jinja2/): 3.0.3
+- [minify_html](https://pypi.org/project/minify-html/): 0.7.0
+- [progress](https://pypi.org/project/minify-html/): 1.6
+
+### Development Requirements ###
+
+- [check-requirements-txt](https://pypi.org/project/check-requirements-txt/): 1.0.2
+- [flake8](https://pypi.org/project/flake8/): 4.0.1
+- [pytest](https://pypi.org/project/pytest/): 6.2.5
+
+### Recommended Environment ###
+
+- [Visual Studio Code](https://code.visualstudio.com)
+- [Python 3.9+](https://python.org)
+- [Git 2.36.1+](https://git-scm.com/)
+
+#### Recommended VSCode Plugins ####
+
+- [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
+- [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
+- [autoDocstring - Python Docstring Generator](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)
+- [Better Jinja](https://marketplace.visualstudio.com/items?itemName=samuelcolvin.jinjahtml)
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+- [Comment Anchors](https://marketplace.visualstudio.com/items?itemName=ExodiusStudios.comment-anchors)
+- [Importmagic](https://marketplace.visualstudio.com/items?itemName=codeavecjonathan.importmagic)
+- [Ini for VSCode](https://marketplace.visualstudio.com/items?itemName=DavidWang.ini-for-vscode)
+- [IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode)
+- [IntelliCode Completions](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode-completions)
+- [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
+- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+
 ## Getting Started ##
 
 1. You need your participants to register with you to fill out the CSV. I recommend sending them all a link to a google form with some questions \(Who do you always get, what's your amazon wish list, etc\). Then download the data and arrange it into a CSV file with the format described in the section "CSV".
@@ -15,7 +53,7 @@ That's where PyPollyanna comes in. I wrote it for my own family's yearly Pollyan
 
 That's it! You've got a Pollyanna list and all of your participants have been emailed with whom they should buy a gift for.
 
-## CSV File ##
+## CSV File \(data.csv\) ##
 
 The CSV File, data.csv, includes the information needed for the participants in the Pollyanna. The good news is that this can be adapted from a CSV export of a Google Form which is how I conducted the survey for the information.
 
@@ -25,7 +63,7 @@ The format for the file is a CSV meaning it's separated by commas and must conta
 
 Otherwise, the program will not load it correctly. Each entry must be on a separate line. An example might look like:
 
-```csv
+```CSV
 ID,Name,Full Name,I ALWAYS Get,Spouse,Email Address,Amazon Wishlist
 1,Gino,Gino Contoso,-1,2,gino@contoso.com,https://www.amazon.com/wishlist
 2,Cella,Marcela Contoso,-1,1,cella@contoso.com,https://www.amazon.com/wishlist
@@ -72,7 +110,7 @@ The Facilitator section includes the name of the facilitator and the name of the
 
 ## Templates ##
 
-There are two templates in the "Template" folder and these are used for the email that is sent to everyone. In the future, they will be normalized so as not to require changes to both.  
+There are two templates in the "Template" folder and these are used for the email that is sent to everyone. The two template.\[txt|html\].jinja files indicate the formatting for both the html and text only versions of the email. The master.jinja file indicates the text common to both as well as the variables used by its sections and the templates. 
 
 ### Master Template ###
 
@@ -112,11 +150,12 @@ main.py \[-h\] \[-t\] \[-f FACILITATOR\] \[-q\] \[-n | -p PRIZE\]
 
 ## Road Map ##
 
+1. Finish Documentation of all code and type annotations
 1. Add command-line options to specify config files
-2. Prompt the user to enter people and generate the source CSV file manually if it's empty, missing, insufficient[^1], or improperly formatted[^2].
-3. Allow the end user to specify additional variables to use for the templates
-4. Automatically test email system before attempting to send emails.
-5. Make more options specified on the command line.
+1. Prompt the user to enter people and generate the source CSV file manually if it's empty, missing, insufficient[^1], or improperly formatted[^2].
+1. Allow the end user to specify additional variables to use for the templates
+1. Automatically test email system before attempting to send emails.
+1. Make more options specified on the command line.
 
 [^1]: "insufficient" means that it doesn't reflect enough people.
 [^2]: "improperly formatted* means that it doesn't have all of the columns it must have at minimum.

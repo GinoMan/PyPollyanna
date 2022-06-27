@@ -1,16 +1,20 @@
-import csv
-import random
-from typing import List
+# PyPollyanna Person Module
+# Written by Gino Vincenzini
+# Copyright 2021 Gino Vincenzini. Licensed under MIT License
+
+from csv import DictReader
+from random import choice
+from typing import Union
 
 
 class Person:
-	Name = ""
-	FullName = ""
-	EmailAddress = ""
-	AmazonLink = ""
-	IDNumber = 0
-	Spouse = 0
-	AlwaysGets = 0
+	Name: str = ""
+	FullName: str = ""
+	EmailAddress: str = ""
+	AmazonLink: str = ""
+	IDNumber: int = 0
+	Spouse: int = 0
+	AlwaysGets: int = 0
 	GiftsTo: 'Person'
 	
 	def __init__(self, csvLine: dict):
@@ -25,6 +29,8 @@ class Person:
 	def __str__(self):
 		rep = (f"{self.IDNumber} | {self.FullName} ({self.Name})"
 		f": Married To ID: {self.Spouse} - ")
+
+		# Uncomment below for debugging purposes when debugging
 		# rep += "\n\t"
 		# if self.AlwaysGets > 0:
 		#     rep += f"Always Gets ID: {self.AlwaysGets}\n\t"
@@ -32,13 +38,14 @@ class Person:
 		#     rep += "Doesn't always get anyone\n\t"
 		# rep += f"Email Address: {self.EmailAddress}\n\t"
 		# rep += f"Amazon Wishlist: {self.AmazonLink}\n\t"
+
 		if self.GiftsTo is not None:
 			rep += f"Assigned To: {self.GiftsTo.Name}"
 		else:
 			rep += "Not Assigned To Anyone..."
 		return rep
 	
-	def mate(self, available: List):
+	def mate(self, available: list['Person']):
 		locallyAvailable = available.copy()
 		removeGroup = [self.Spouse, self.AlwaysGets, self.IDNumber]
 		# remove spouse, and always get
@@ -48,7 +55,7 @@ class Person:
 				locallyAvailable.remove(person)
 		if len(locallyAvailable) <= 0:
 			return None
-		pick = random.choice(locallyAvailable)
+		pick = choice(locallyAvailable)
 		self.GiftsTo = pick
 		return pick
 		
@@ -57,19 +64,20 @@ class PollyannaGroup:
 	people: list[Person]
 	assignments: dict[Person, int]
 	
-	def __init__(self, fileName):
+	def __init__(self, fileName: str):
 		self.people = []
 		with open(fileName, newline='\n', encoding="UTF-8-sig") as csv_file:
-			reader = csv.DictReader(csv_file, delimiter=',',
+			reader = DictReader(csv_file, delimiter=',',
 			quotechar='"', skipinitialspace=True)
 			for row in reader:
 				self.people.append(Person(row))
 	
-	def __getitem__(self, key):
+	def __getitem__(self, key: Union[str, int]):
 		for item in self.people:
 			if isinstance(key, int) and item.IDNumber == key:
 				return item
-			elif isinstance(key, str) and item.Name == key:
+			elif isinstance(key, str) and (
+				item.Name == key or item.FullName == key):
 				return item
 			else:
 				continue

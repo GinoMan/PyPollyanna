@@ -1,31 +1,48 @@
-# Python Emailing Module
+# PyPollyanna Emailing Module
 # Written by Gino Vincenzini
-# Copyright 2021 Gino Vincenzini. Licensed under GPLv3
+# Copyright 2021 Gino Vincenzini. Licensed under MIT License
 
-import configparser
-import smtplib
-import types
-import typing
-import re
-import os
+from re import sub
+from os.path import expanduser, isdir, join
+from os import mkdir
+from configparser import ConfigParser
 from email.message import EmailMessage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from smtplib import SMTP, SMTPConnectError, SMTPException
+from typing import Optional
 
 
-class SMTPHandler:
+class EmailHandler:
+	def __init__(self, configFilePath: str):
+		pass
+
+	def __del__(self):
+		pass
+
+	def SendEmail(self, destination: str, content: str, text_content: str):
+		pass
+
+	def Connect(self):
+		pass
+
+	def TestConnection(self) -> tuple[bool, str]:
+		return False, "Not Implemented"
+
+
+class SMTPHandler (EmailHandler):
 	server = ""
 	port = 0
 	username = ""
 	password = ""
 	security = ""
 	config_file_path: str
-	config: configparser.ConfigParser
-	system: smtplib.SMTP
+	config: ConfigParser
+	system: SMTP
 	connected: bool = False
 	
 	def __init__(self, configFilePath: str):
-		self.config = configparser.ConfigParser()
+		self.config = ConfigParser()
 		self.config.read(configFilePath)
 		self.username = self.config['DEFAULT']['Email']
 		self.password = self.config['DEFAULT']['Password']
@@ -57,7 +74,7 @@ class SMTPHandler:
 
 	def Connect(self):
 		# Setup the SMTP system.
-		self.system = smtplib.SMTP(host=self.server, port=self.port)
+		self.system = SMTP(host=self.server, port=self.port)
 		if self.security == 'TLS' and self.port != 25:
 			self.system.starttls()
 		self.system.login(self.username, self.password)
@@ -65,30 +82,30 @@ class SMTPHandler:
 
 	def TestConnection(self) -> tuple[bool, str]:
 		try:
-			with smtplib.SMTP(host=self.server, port=self.port,
+			with SMTP(host=self.server, port=self.port,
 				timeout=10) as smtp:
 				if self.security == 'TLS' and self.port != 25:
 					self.system.starttls()
 				self.system.login(self.username, self.password)
 				smtp.noop()
 
-		except smtplib.SMTPConnectError as error:
+		except SMTPConnectError as error:
 			return False, f"{error.errno}: {error.strerror}\n" \
 				f"{error.smtp_code}: {error.smtp_error}"
 
-		except smtplib.SMTPException as error:
+		except SMTPException as error:
 			return False, f"{error.errno}: {error.strerror}"
 			
 		return True, "OK"
 
 
-class TXTHandler:
-	config: configparser.ConfigParser
+class TXTHandler (EmailHandler):
+	config: ConfigParser
 	username: str
 	config_file_path: str
 	
 	def __init__(self, configFilePath: str = ""):
-		self.config = configparser.ConfigParser()
+		self.config = ConfigParser()
 		if configFilePath:
 			self.config_file_path = configFilePath
 			self.config.read(configFilePath)
@@ -99,16 +116,19 @@ class TXTHandler:
 	def __del__(self):
 		pass
 
+	def Connect(self):
+		pass
+
 	def TestConnection(self):
 		return True
 
 	def SendEmail(self, destination: str, content: str, text_content: str):
-		fileName = re.sub("@.*", "", destination)
+		fileName = sub("@.*", "", destination)
 		fileName += ".email.txt"
-		outputDir = os.path.expanduser('~/OutputMessages')
-		if not os.path.isdir(outputDir):
-			os.mkdir(outputDir)
-		fileName = os.path.join(outputDir, fileName)
+		outputDir = expanduser('~/OutputMessages')
+		if not isdir(outputDir):
+			mkdir(outputDir)
+		fileName = join(outputDir, fileName)
 		with (open(fileName, "w")) as email:
 			# The next two lines need to be changed
 			# to allow for other facilitators and events
@@ -132,20 +152,21 @@ class Email:
 	Recipient = ""
 	EmailContent = ""
 	EmailTextContent = ""
-	EmailHandler: SMTPHandler
+	email_handler: EmailHandler
 	
-	def __init__(self, recipient, content, text_content, handler=None):
+	def __init__(self, recipient: str, content: str, text_content: str,
+		handler: Optional[EmailHandler] = None):
 		self.Recipient = recipient
 		self.EmailContent = content
 		self.EmailTextContent = text_content
 		if handler is None:
-			self.EmailHandler = SMTPHandler("creds.conf")
+			self.email_handler = SMTPHandler("creds.conf")
 		else:
-			self.EmailHandler = handler
+			self.email_handler = handler
 			
 	def __str__(self):
 		return f"To: {self.Recipient}\n{self.EmailTextContent}"
 	
 	def SendEmail(self):
-		return self.EmailHandler.SendEmail(self.Recipient,
+		return self.email_handler.SendEmail(self.Recipient,
 		self.EmailContent, self.EmailTextContent)

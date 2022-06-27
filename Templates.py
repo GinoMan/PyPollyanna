@@ -1,5 +1,11 @@
+# PyPollyanna Templating Module
+# Written by Gino Vincenzini
+# Copyright 2021 Gino Vincenzini. Licensed under MIT License
+
 from datetime import date, timedelta
+
 from jinja2 import FileSystemLoader, Environment, Template
+
 from Person import Person
 
 
@@ -8,7 +14,8 @@ class ContestSettings:
 	contest: bool = True
 	prize: str = "Bragging Rights"
 
-	def __init__(self, facilitator, prize="Bragging Rights", contest=True):
+	def __init__(self, facilitator: str, prize: str = "Bragging Rights",
+			contest: bool = True):
 		self.facilitator = facilitator
 		self.prize = prize
 		self.contest = contest

@@ -4,17 +4,26 @@
 		"Tests"
 	],
 	"python.testing.unittestEnabled": false,
+	"testExplorer.useNativeTesting": true,
 	"python.testing.pytestEnabled": true,
 	"python.testing.autoTestDiscoverOnSaveEnabled": true,
 	"python.defaultInterpreterPath": ".venv/Scripts/python.exe",
 	"python.linting.flake8Enabled": true,
 	"python.linting.enabled": true,
 	"cSpell.words": [
+		"argparse",
+		"colorama",
 		"Contoso",
 		"creds",
 		"deinit",
+		"getitem",
+		"gettempdir",
 		"Marcela",
-		"strerror"
+		"pathlib",
+		"pytest",
+		"strerror",
+		"tempfile",
+		"Templating"
 	],
 	"markdownlint.config": {
 		"default": true,

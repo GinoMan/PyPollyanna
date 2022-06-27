@@ -1,5 +1,6 @@
 atomicwrites==1.4.0
 attrs==21.2.0
+check-requirements-txt==1.0.2
 colorama==0.4.4
 flake8==4.0.1
 iniconfig==1.1.1
@@ -15,4 +16,5 @@ pycodestyle==2.8.0
 pyflakes==2.4.0
 pyparsing==3.0.6
 pytest==6.2.5
+stdlib-list==0.8.0
 toml==0.10.2

@@ -1,8 +1,10 @@
+# PyPollyanna
+# Written by Gino Vincenzini
+# Copyright 2021 Gino Vincenzini. Licensed under MIT License
+
 from argparse import ArgumentParser, Namespace, RawTextHelpFormatter
 from datetime import datetime
-from os import mkdir, path, system
-import os
-from os.path import abspath
+from os import path, system, get_terminal_size
 from pathlib import Path
 from random import choice
 from tempfile import gettempdir
@@ -37,30 +39,22 @@ to and can exclude it. If you do, you can specify a better reward than \
 """
 
 
-def save_csv(group: PollyannaGroup):
-	"""Creates a full CSV File of the associations in the following format:
-	Name | Full Name | Email Address | Amazon Link | Who Assigned To
-
-	Args:
-		group (PollyannaGroup): The Group imported from the CSV File
-	"""
-
-	# create a csv file of the results:
-	# name, full-name, email-address, amazon-link, who-assigned-to
-	filename = path.expanduser(f'~/{datetime.now().year} '
-		'pollyanna assignments.csv')
-	with open(filename, 'w') as csvFile:
-		csvFile.write("Full Name, Email Address, Assigned, "
-			"Assigned Amazon Link\n")
-		for person in group:
-			csvFile.write(f"{person.FullName}, {person.EmailAddress},"
-			f"{person.GiftsTo.FullName}, {person.GiftsTo.AmazonLink}\n")
-
-
 def reset_terminal_colors():
 	"""Resets the color effects in the terminal
 	"""
-	print(Style.RESET_ALL)
+	print(Style.RESET_ALL, end='')
+
+
+def show_header():
+	"""Shows the program Header banner.
+	"""
+
+	term_width = get_terminal_size().columns
+	print(Back.RED + Fore.BLACK)
+	print(' ' * term_width)
+	print("WELCOME TO THE POLLYANNA LOTTERY SYSTEM".center(term_width))
+	print(' ' * term_width)
+	reset_terminal_colors()
 
 
 def display_example(person: Person, template: EmailTemplate,
@@ -91,35 +85,6 @@ def display_example(person: Person, template: EmailTemplate,
 	system(f"start {tmpTXTFile}")
 
 
-def email_group(group: PollyannaGroup, template: EmailTemplate,
-		txtTemplate: EmailTemplate, is_test: bool):
-	"""This emails the people on the list or generates text files
-	for debugging containing the contents of both the txt and html
-	templates with the values filled in. It also includes important
-	Email related information like From, To, and Subject.
-
-	Args:
-		group (PollyannaGroup): The Group to email
-		template (EmailTemplate): The HTML Template to use
-		txtTemplate (EmailTemplate): The Text Template to use
-		is_test (bool): whether to only generate files in testing
-	"""
-
-	number_of_participants = len(group)
-	with IncrementalBar('Emailing Recipients', max=number_of_participants,
-		suffix='%(percent).1f%% - %(eta)ds') as bar:
-		for person in group:
-			html = minify(template.render_for_person(person), minify_js=True,
-				remove_processing_instructions=True)
-			txt = txtTemplate.render_for_person(person)
-			if is_test:
-				email = Email(person.EmailAddress, html, txt, TXTHandler("creds.conf"))
-			else:
-				email = Email(person.EmailAddress, html, txt)
-			email.SendEmail()
-			bar.next()
-
-
 def display_group(group: PollyannaGroup):
 	"""Prints a list of every member of the group and who they're assigned to
 
@@ -131,30 +96,17 @@ def display_group(group: PollyannaGroup):
 		print(f"{person.FullName} -> {person.GiftsTo.FullName}")
 
 
-def parse_arguments() -> Namespace:
-	"""Parses Command Line Arguments
+def display_associations(group: PollyannaGroup):
+	"""Display's the list of names and their associations for the user.
+	with coloring and formatting.
 
-	Returns:
-		argparse.Namespace: The object containing command line arg values
+	Args:
+		group (PollyannaGroup): _description_
 	"""
-
-	arg_parser = ArgumentParser(description=app_description,
-		formatter_class=RawTextHelpFormatter, prefix_chars='-/')
-	arg_group = arg_parser.add_mutually_exclusive_group()
-
-	arg_parser.add_argument("-t", "--test", action="store_true",
-		help="do not send final emails, save instead")
-	arg_parser.add_argument("-f", "--facilitator", type=str,
-		help="The name of the facilitator")
-	arg_parser.add_argument("-q", "--quiet", action="store_true",
-		help="Determines whether or not to display sample emails")
-	arg_group.add_argument("-n", "--no-contest", action="store_true",
-		help="Whether or not there will be a gift-wrapping contest")
-	arg_group.add_argument("-p", "--prize", type=str,
-		help="The winner of the gift-wrapping contest receives this "
-			"(e.g. \"A $100 Amazon Gift Card\").")
-
-	return arg_parser.parse_args()
+	print("The Associations are as follows:")
+	print(Fore.GREEN)
+	display_group(group)
+	reset_terminal_colors()
 
 
 def negative_answer(prompt_str: str, pos_answer='Y') -> bool:
@@ -183,24 +135,79 @@ def negative_answer(prompt_str: str, pos_answer='Y') -> bool:
 	return (not input(prompt_str).capitalize().strip().startswith(pos_answer))
 
 
-def show_header():
-	"""Shows the program Header banner.
+def parse_arguments() -> Namespace:
+	"""Parses Command Line Arguments
+
+	Returns:
+		argparse.Namespace: The object containing command line arg values
 	"""
 
-	term_width = os.get_terminal_size().columns
-	print(Back.RED + Fore.BLACK)
-	print(' ' * term_width)
-	print("WELCOME TO THE POLLYANNA LOTTERY SYSTEM".center(term_width))
-	print(' ' * term_width)
-	reset_terminal_colors()
+	arg_parser = ArgumentParser(description=app_description,
+		formatter_class=RawTextHelpFormatter, prefix_chars='-/')
+	arg_group = arg_parser.add_mutually_exclusive_group()
+
+	arg_parser.add_argument("-t", "--test", action="store_true",
+		help="do not send final emails, save instead")
+	arg_parser.add_argument("-f", "--facilitator", type=str,
+		help="The name of the facilitator")
+	arg_parser.add_argument("-q", "--quiet", action="store_true",
+		help="Determines whether or not to display sample emails")
+	arg_group.add_argument("-n", "--no-contest", action="store_true",
+		help="Whether or not there will be a gift-wrapping contest")
+	arg_group.add_argument("-p", "--prize", type=str,
+		help="The winner of the gift-wrapping contest receives this "
+			"(e.g. \"A $100 Amazon Gift Card\").")
+
+	return arg_parser.parse_args()
 
 
-def display_associations(group):
-	print("The Associations are as follows:")
-	print(Fore.GREEN)
-	for person in group:
-		print(f"{person.FullName} -> {person.GiftsTo.FullName}")
-	reset_terminal_colors()
+def save_csv(group: PollyannaGroup):
+	"""Creates a full CSV File of the associations in the following format:
+	Name | Full Name | Email Address | Amazon Link | Who Assigned To
+
+	Args:
+		group (PollyannaGroup): The Group imported from the CSV File
+	"""
+
+	# create a csv file of the results:
+	# name, full-name, email-address, amazon-link, who-assigned-to
+	filename = path.expanduser(f'~/{datetime.now().year} '
+		'pollyanna assignments.csv')
+	with open(filename, 'w') as csvFile:
+		csvFile.write("Full Name, Email Address, Assigned, "
+			"Assigned Amazon Link\n")
+		for person in group:
+			csvFile.write(f"{person.FullName}, {person.EmailAddress},"
+			f"{person.GiftsTo.FullName}, {person.GiftsTo.AmazonLink}\n")
+
+
+def email_group(group: PollyannaGroup, template: EmailTemplate,
+		txtTemplate: EmailTemplate, is_test: bool):
+	"""This emails the people on the list or generates text files
+	for debugging containing the contents of both the txt and html
+	templates with the values filled in. It also includes important
+	Email related information like From, To, and Subject.
+
+	Args:
+		group (PollyannaGroup): The Group to email
+		template (EmailTemplate): The HTML Template to use
+		txtTemplate (EmailTemplate): The Text Template to use
+		is_test (bool): whether to only generate files in testing
+	"""
+
+	number_of_participants = len(group)
+	with IncrementalBar('Emailing Recipients', max=number_of_participants,
+		suffix='%(percent).1f%% - %(eta)ds') as bar:
+		for person in group:
+			html = minify(template.render_for_person(person), minify_js=True,
+				remove_processing_instructions=True)
+			txt = txtTemplate.render_for_person(person)
+			if is_test:
+				email = Email(person.EmailAddress, html, txt, TXTHandler("creds.conf"))
+			else:
+				email = Email(person.EmailAddress, html, txt)
+			email.SendEmail()
+			bar.next()
 
 
 def main():
