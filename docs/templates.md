@@ -16,7 +16,7 @@ This module imports several standard as well as external libraries:
 
 ### Custom Classes ###
 
-`Person`: [`Person`](https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md)
+[`Person`](https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md): [`Person`](https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#person-class)
 
 ## ContestSettings class ##
 

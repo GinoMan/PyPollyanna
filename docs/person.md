@@ -9,7 +9,9 @@ This module imports several standard as well as external libraries:
 ### Standard Library ###
 
 `csv`: `DictReader`
+
 `random`: `choice`
+
 `typing`: `List`
 
 ## Person class ##

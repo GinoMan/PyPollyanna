@@ -6,6 +6,7 @@ from argparse import ArgumentParser, Namespace, RawTextHelpFormatter
 from datetime import datetime
 from os import path, system, get_terminal_size
 from pathlib import Path
+from platform import system as platform_system
 from random import choice
 from tempfile import gettempdir
 
@@ -45,14 +46,14 @@ def reset_terminal_colors():
 	print(Style.RESET_ALL, end='')
 
 
-def show_header():
+def show_header(program_name: str = "THE POLLYANNA LOTTERY SYSTEM"):
 	"""Shows the program Header banner.
 	"""
 
 	term_width = get_terminal_size().columns
 	print(Back.RED + Fore.BLACK)
 	print(' ' * term_width)
-	print("WELCOME TO THE POLLYANNA LOTTERY SYSTEM".center(term_width))
+	print(f"WELCOME TO {program_name}!".center(term_width))
 	print(' ' * term_width)
 	reset_terminal_colors()
 
@@ -81,8 +82,15 @@ def display_example(person: Person, template: EmailTemplate,
 	# open web browser of example for html
 	with open(f"{tmpHTMLFile}", 'w') as htmlFile:
 		htmlFile.write(render)
-	system(f"start {tmpHTMLFile}")
-	system(f"start {tmpTXTFile}")
+
+	# Make the command portable across operating systems
+	command = {"Windows": "start", "Linux": "xdg-open", "Darwin": "open"}
+
+	start_html: str = f"{command[platform_system()]} {tmpHTMLFile}"
+	start_txt: str = f"{command[platform_system()]} {tmpTXTFile}"
+	
+	system(start_html)
+	system(start_txt)
 
 
 def display_group(group: PollyannaGroup):
@@ -103,8 +111,8 @@ def display_associations(group: PollyannaGroup):
 	Args:
 		group (PollyannaGroup): _description_
 	"""
-	print("The Associations are as follows:")
-	print(Fore.GREEN)
+	print(Fore.RED + "The Associations are as follows:")
+	print(Fore.GREEN, end='')
 	display_group(group)
 	reset_terminal_colors()
 
@@ -224,7 +232,7 @@ def main():
 	if args.facilitator is None:
 		facilitator = input("Please Enter your full name here: ")
 	
-	contest = ContestSettings(facilitator, args.prize, args.no_contest)
+	contest = ContestSettings(facilitator, args.prize, not args.no_contest)
 	group.shuffle()
 	
 	# Print the associations, and then allow the person to double check
@@ -269,4 +277,8 @@ def main():
 
 
 if (__name__ == "__main__"):
-	main()
+	try:
+		main()
+	finally:
+		reset_terminal_colors()
+		deinit()

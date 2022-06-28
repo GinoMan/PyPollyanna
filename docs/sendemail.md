@@ -8,6 +8,22 @@ This module imports several standard as well as external libraries:
 
 ### Standard Library ###
 
+`re`: `sub`
+
+`os`: `mkdir`
+
+`os.path`: `expanduser`, `isdir`, `join`
+
+`configparser`: `ConfigParser`
+
+`email.mime.multipart`: `MIMEMultipart`
+
+`email.mime.text`: `MIMEText`
+
+`smtplib`: `SMTP`, `SMTPConnectError`, `SMTPException`
+
+`typing`: `Optional`
+
 ## EmailHandler class ##
 
 ### EmailHandler.\_\_init\_\_(self, configFilePath: str) ###

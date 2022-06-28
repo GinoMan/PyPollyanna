@@ -3,10 +3,9 @@
 # Copyright 2021 Gino Vincenzini. Licensed under MIT License
 
 from re import sub
-from os.path import expanduser, isdir, join
 from os import mkdir
+from os.path import expanduser, isdir, join
 from configparser import ConfigParser
-from email.message import EmailMessage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from smtplib import SMTP, SMTPConnectError, SMTPException
