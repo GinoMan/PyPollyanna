@@ -55,11 +55,11 @@ That's where PyPollyanna comes in. I wrote it for my own family's yearly Pollyan
 ## Getting Started ##
 
 1. You need your participants to register with you to fill out the CSV. I recommend sending them all a link to a google form with some questions \(Who do you always get, what's your amazon wish list, etc\). Then download the data and arrange it into a CSV file with the format described in the section "CSV".
-2. You put the csv file in the project directory with the name "data.csv".
-3. Create an ini file named "creds.conf" following the format in the section "Credential Config File" in the project directory.
-4. Change the templates to include proper descriptions of your event and parameters.
-5. Download the requirements from pip using requirements.txt; You must be on Python 3.9 or above to run the program.
-6. And you're ready. Go ahead and run main.py in the terminal, and follow the prompts.
+1. You put the csv file in the project directory with the name "data.csv".
+1. Create an ini file named "creds.conf" following the format in the section "Credential Config File" in the project directory.
+1. Change the templates to include proper descriptions of your event and parameters.
+1. Download the requirements from pip using requirements.txt; You must be on Python 3.9 or above to run the program.
+1. And you're ready. Go ahead and run main.py in the terminal, and follow the prompts.
 
 That's it! You've got a Pollyanna list and all of your participants have been emailed with whom they should buy a gift for.
 

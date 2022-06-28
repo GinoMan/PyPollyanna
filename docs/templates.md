@@ -8,9 +8,15 @@ This module imports several standard as well as external libraries:
 
 ### Standard Library ###
 
+`datetime`: `date`, `timedelta`
+
 ### Packages ###
 
+`jinja2`: `FileSystemLoader`, `Environment`, `Template`
+
 ### Custom Classes ###
+
+`Person`: [`Person`](https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md)
 
 ## ContestSettings class ##
 
