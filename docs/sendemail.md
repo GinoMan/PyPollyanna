@@ -38,6 +38,8 @@ This module imports several standard as well as external libraries:
 
 ## SMTPHandler class ##
 
+### SMTPHandler Properties ###
+
 ### SMTPHandler.\_\_init\_\_(self, configFilePath: str) ###
 
 ### SMTPHandler.\_\_del\_\_(self) ###
@@ -50,9 +52,13 @@ This module imports several standard as well as external libraries:
 
 ## TXTHandler class ##
 
+### TXTHandler Properties ###
+
 ### TXTHandler.\_\_init\_\_(self, configFilePath: str = "") ###
 
 ### TXTHandler.\_\_del\_\_(self) ###
+
+### TXTHandler.Connect(self) ###
 
 ### TXTHandler.TestConnection(self) ###
 
@@ -60,5 +66,10 @@ This module imports several standard as well as external libraries:
 
 ## Email class ##
 
+### Email Properties ###
+
 ### Email.\_\_init\_\_(self, recipient: str, content: str, text_content: str, handler=None) ###
 
+### Email.\_\_str\_\_(self) -> str ###
+
+### Email.SendEmail(self) -> None ###
