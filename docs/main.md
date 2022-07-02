@@ -44,7 +44,7 @@ This variable contains a detailed description of the app used in the help text.
 
 ## reset_terminal_colors() -> None ##
 
-This is a helper function that resets all of the color changes made to the terminal without breaking into a new line
+This is a helper function that resets all of the color changes made to the terminal without breaking into a new line. It does not "deinitialize" the colorama library.
 
 ## show_header(program_name: str = "THE POLLYANNA LOTTERY SYSTEM") -> None ##
 
@@ -66,7 +66,7 @@ This function only prints a listing of all of the assignment associations betwee
 
 This function displays the output from the `display_group()` function in a pretty format. It prints a line in red explaining that these are the associations, changes the color output to green text, and then prints the output of `display_group()`. Finally it resets the terminal colors using the `reset_terminal_colors()` function. 
 
-## negative_answer(prompt_str: str, pos_answer:str = 'Y') -> bool ##
+## negative_answer(prompt_str: str, pos_answer: str = 'Y') -> bool ##
 
 This function is meant to be used in code of the following sort:
 
@@ -124,3 +124,4 @@ This invocation allows the `main.py` file to be referenced as a library. I would
 [Templates]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/templates.md
 [ContestSettings-class]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/templates.md#contestsettings-class
 [EmailTemplate-class]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/templates.md#emailtemplate-class
+[Data-csv]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/data.md

@@ -16,7 +16,7 @@ This module imports several standard as well as external libraries:
 
 `typing`: `Union`
 
-## try_int(string: Union[str, bytes, bytearray], base: int = 10) -> Union[int, bool] ##
+## try_int(string: Union\[str, bytes, bytearray\], base: int = 10) -> Union\[int, bool\] ##
 
 This allows one to attempt to parse a string into an int without building a try/except/finally block around it. If the string is able to be treated as an int, then it returns the int. It's meant to be used in this specific context:
 
@@ -42,7 +42,7 @@ This class represents a person participating in the Pollyanna. It has a method t
 - `AlwaysGets: int = 0`
 - `GiftsTo: 'Person'`
 
-### Person.\_\_init\_\_(self, csvLine: dict) ###
+### Person.\_\_init\_\_(self, csvLine: dict\[str, str\]) -> None ###
 
 This is the constructor for the `Person` class. It takes in a `dict[str, str]` of names and values from the CSV file. It has expectations for the names:
 
@@ -57,9 +57,9 @@ The `dict[str, str]` is what is provided by [`DictReader`][csvLib-dictreader] wh
 
 Returns a string representing some of the data in the Person class. There is some commented code that prints additional information but this is only used for debugging purposes.
 
-### Person.mate(self, available: List) -> Person ###
+### Person.mate(self, available: list\['Person'\]) -> Person ###
 
-The `mate` method takes in a list of available people to connect to for gifting. It produces a copy of the list and then removes this person instance's `Spouse`, `AlwaysGets`, and itself (`self.IDNumber`) by iterating through the list and checking if that person's ID is in the list of IDs to remove. It then checks if the resulting list is empty and if so returns `None`. Otherwise it uses the `random.choice()` function to pick from the remaining entries and assigns that to this person's `GiftsTo` property. Finally it returns the pick in case it is needed by the caller.
+The `mate` method takes in a list of available people to connect to for gifting (i.e. those who haven't already been chosen). It produces a copy of the list and then removes this person instance's `Spouse`, `AlwaysGets`, and itself (`self.IDNumber`) by iterating through the list and checking if that person's ID is in the list of IDs to remove. It then checks if the resulting list is empty and if so returns `None`. Otherwise it uses the `random.choice()` function to pick from the remaining entries and assigns that to this person's `GiftsTo` property. Finally it returns the pick in case it is needed by the caller.
 
 ## PollyannaGroup class ##
 
@@ -69,9 +69,9 @@ This class pretends to be a Dictionary/Array that contains all of the [`Person`]
 
 - `people: list[Person]`
 
-### PollyannaGroup.\_\_init\_\_(self, filename: str) ###
+### PollyannaGroup.\_\_init\_\_(self, filename: str) -> None ###
 
-### PollyannaGroup.\_\_getitem\_\_(self, key: str | int) -> Person ###
+### PollyannaGroup.\_\_getitem\_\_(self, key: Union\[str, int\]) -> Person ###
 
 ### PollyannaGroup.\_\_str\_\_(self) -> str ###
 

@@ -26,49 +26,49 @@ This module imports several standard as well as external libraries:
 
 ## EmailHandler class ##
 
-### EmailHandler.\_\_init\_\_(self, configFilePath: str) ###
+### EmailHandler.\_\_init\_\_(self, configFilePath: str) -> None ###
 
-### EmailHandler.\_\_del\_\_(self) ###
+### EmailHandler.\_\_del\_\_(self) -> None ###
 
-### EmailHandler.SendEmail(self, destination: str, content: str, text_content: str) ###
+### EmailHandler.SendEmail(self, destination: str, content: str, text_content: str) -> list\[str\] ###
 
-### EmailHandler.Connect(self) ###
+### EmailHandler.Connect(self) -> None ###
 
-### EmailHandler.TestConnection(self) -> tuple[bool, str] ###
+### EmailHandler.TestConnection(self) -> tuple\[bool, str\] ###
 
 ## SMTPHandler class ##
 
 ### SMTPHandler Properties ###
 
-### SMTPHandler.\_\_init\_\_(self, configFilePath: str) ###
+### SMTPHandler.\_\_init\_\_(self, configFilePath: str) -> None ###
 
-### SMTPHandler.\_\_del\_\_(self) ###
+### SMTPHandler.\_\_del\_\_(self) -> None ###
 
-### SMTPHandler.SendEmail(self, destination: str, content: str, text_content: str) ###
+### SMTPHandler.SendEmail(self, destination: str, content: str, text_content: str) -> list\[str\] ###
 
-### SMTPHandler.Connect(self) ###
+### SMTPHandler.Connect(self) -> None ###
 
-### SMTPHandler.TestConnection(self) -> tuple[bool, str] ###
+### SMTPHandler.TestConnection(self) -> tuple\[bool, str\] ###
 
 ## TXTHandler class ##
 
 ### TXTHandler Properties ###
 
-### TXTHandler.\_\_init\_\_(self, configFilePath: str = "") ###
+### TXTHandler.\_\_init\_\_(self, configFilePath: str = "") -> None ###
 
-### TXTHandler.\_\_del\_\_(self) ###
+### TXTHandler.\_\_del\_\_(self) -> None ###
 
-### TXTHandler.Connect(self) ###
+### TXTHandler.Connect(self) -> None ###
 
-### TXTHandler.TestConnection(self) ###
+### TXTHandler.TestConnection(self) -> bool ###
 
-### TXTHandler.SendEmail(self, destination: str, content: str, text_content: str) ###
+### TXTHandler.SendEmail(self, destination: str, content: str, text_content: str) -> list\[str\] ###
 
 ## Email class ##
 
 ### Email Properties ###
 
-### Email.\_\_init\_\_(self, recipient: str, content: str, text_content: str, handler=None) ###
+### Email.\_\_init\_\_(self, recipient: str, content: str, text_content: str, handler=None) -> None ###
 
 ### Email.\_\_str\_\_(self) -> str ###
 

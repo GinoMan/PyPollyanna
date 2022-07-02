@@ -1,4 +1,4 @@
-# SendEmail.py File Notes #
+# Templates.py File Notes #
 
 ## Summary ##
 
@@ -20,11 +20,15 @@ This module imports several standard as well as external libraries:
 
 ## ContestSettings class ##
 
-### ContestSettings.\_\_init\_\_(self, facilitator: str, prize: str = "Bragging Rights", contest: bool = True) ###
+### ContestSettings Properties ###
+
+### ContestSettings.\_\_init\_\_(self, facilitator: str, prize: str = "Bragging Rights", contest: bool = True) -> None ###
 
 ## EmailTemplate class ##
 
-### EmailTemplate.\_\_init\_\_(self, templateDirectory: str, filename: str, settings: ContestSettings, html: bool = True) ###
+### EmailTemplate Properties ###
+
+### EmailTemplate.\_\_init\_\_(self, templateDirectory: str, filename: str, settings: ContestSettings, html: bool = True) -> None ###
 
 ### EmailTemplate.render_for_person(self, person: Person) -> str ###
 
@@ -32,4 +36,4 @@ This module imports several standard as well as external libraries:
 
 ### EmailTemplate.render(self) -> str ###
 
-### EmailTemplate.set_values(self, recipient: str, assignedName: str, assignedNameFull: str, amazonWishList: str) ###
+### EmailTemplate.set_values(self, recipient: str, assignedName: str, assignedNameFull: str, amazonWishList: str) -> None ###
