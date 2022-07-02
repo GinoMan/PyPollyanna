@@ -8,11 +8,11 @@ This module imports several standard as well as external libraries:
 
 ### Standard Library ###
 
-`datetime`: `date`, `timedelta`
+[`datetime`][datetime]: [`date`][datetime-date], [`timedelta`][datetime-timedelta]
 
 ### Packages ###
 
-`jinja2`: `FileSystemLoader`, `Environment`, `Template`
+[`jinja2`][jinja2]: [`FileSystemLoader`][jinja2-FileSystemLoader], [`Environment`][jinja2-Environment], [`Template`][jinja2-Template]
 
 ### Custom Classes ###
 
@@ -50,6 +50,7 @@ This module imports several standard as well as external libraries:
 [csvlib-dictreader]: https://docs.python.org/3.9/library/csv.html#csv.DictReader
 
 [datetime]: https://docs.python.org/3.9/library/datetime.html
+[datetime-datetime]: https://docs.python.org/3.9/library/datetime.html#datetime-objects
 [datetime-date]: https://docs.python.org/3.9/library/datetime.html#date-objects
 [datetime-timedelta]: https://docs.python.org/3.9/library/datetime.html#timedelta-objects
 
@@ -69,6 +70,9 @@ This module imports several standard as well as external libraries:
 
 [pathlib]: https://docs.python.org/3.9/library/pathlib.html
 [pathlib-Path]: https://docs.python.org/3.9/library/pathlib.html#pathlib.Path
+
+[platform]: https://docs.python.org/3.9/library/platform.html
+[platform-system]: https://docs.python.org/3.9/library/platform.html#platform.system
 
 [random]: https://docs.python.org/3.9/library/random.html
 [random-choice]: https://docs.python.org/3.9/library/random.html#random.choice
@@ -95,13 +99,16 @@ This module imports several standard as well as external libraries:
 [colorama-deinit]: https://github.com/tartley/colorama#initialisation
 [colorama-init]: https://github.com/tartley/colorama#initialisation
 
-[minify_html]: https://github.com/wilsonzlin/minify-html
-[minify_html-minify]: https://docs.rs/minify-html/latest/minify_html/struct.Cfg.html
-
 [jinja2]: https://jinja.palletsprojects.com/en/3.1.x/
 [jinja2-FileSystemLoader]: https://jinja.palletsprojects.com/en/3.1.x/api/#jinja2.FileSystemLoader
 [jinja2-Environment]: https://jinja.palletsprojects.com/en/3.1.x/api/#jinja2.Environment
 [jinja2-Template]: https://jinja.palletsprojects.com/en/3.1.x/api/#jinja2.Template
+
+[minify_html]: https://github.com/wilsonzlin/minify-html
+[minify_html-minify]: https://docs.rs/minify-html/latest/minify_html/struct.Cfg.html
+
+[progress-bar]: https://github.com/verigak/progress/
+[progress-bar-IncrementalBar]: https://github.com/verigak/progress/#bars
 
 [Main]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/main.md
 [Main-app_description]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/main.md#app_description
