@@ -16,11 +16,13 @@
 		"Contoso",
 		"creds",
 		"deinit",
+		"deinitialize",
 		"getitem",
 		"gettempdir",
 		"Marcela",
 		"pathlib",
 		"pytest",
+		"startswith",
 		"strerror",
 		"tempfile",
 		"Templating"

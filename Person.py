@@ -7,6 +7,14 @@ from random import choice
 from typing import Union
 
 
+def try_int(string: Union[str, bytes, bytearray],
+	base: int = 10) -> Union[int, bool]:
+	try:
+		return int(string, base)
+	except ValueError:
+		return False
+
+
 class Person:
 	Name: str = ""
 	FullName: str = ""
@@ -23,8 +31,12 @@ class Person:
 		self.EmailAddress = csvLine["Email Address"]
 		self.AmazonLink = csvLine["Amazon Wishlist"]
 		self.IDNumber = int(csvLine["ID"])
-		self.Spouse = int(csvLine["Spouse"] or 0)
-		self.AlwaysGets = int(csvLine["I ALWAYS Get"] or 0)
+
+		spouse = try_int(csvLine["Spouse"])
+		alwaysGets = try_int(csvLine["I ALWAYS Get"])
+
+		self.Spouse = spouse if spouse is not False else 0
+		self.AlwaysGets = alwaysGets if alwaysGets is not False else 0
 	
 	def __str__(self):
 		rep = (f"{self.IDNumber} | {self.FullName} ({self.Name})"
@@ -48,10 +60,10 @@ class Person:
 	def mate(self, available: list['Person']):
 		locallyAvailable = available.copy()
 		removeGroup = [self.Spouse, self.AlwaysGets, self.IDNumber]
-		# remove spouse, and always get
+		# remove self, spouse, and always get
 		
 		for person in locallyAvailable:
-			if removeGroup.__contains__(person.IDNumber):
+			if person.IDNumber in removeGroup:
 				locallyAvailable.remove(person)
 		if len(locallyAvailable) <= 0:
 			return None
@@ -62,7 +74,6 @@ class Person:
 
 class PollyannaGroup:
 	people: list[Person]
-	assignments: dict[Person, int]
 	
 	def __init__(self, fileName: str):
 		self.people = []

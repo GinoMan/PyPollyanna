@@ -4,7 +4,8 @@
 
 from argparse import ArgumentParser, Namespace, RawTextHelpFormatter
 from datetime import datetime
-from os import path, system, get_terminal_size
+from os import system, get_terminal_size
+from os.path import expanduser
 from pathlib import Path
 from platform import system as platform_system
 from random import choice
@@ -179,7 +180,7 @@ def save_csv(group: PollyannaGroup):
 
 	# create a csv file of the results:
 	# name, full-name, email-address, amazon-link, who-assigned-to
-	filename = path.expanduser(f'~/{datetime.now().year} '
+	filename = expanduser(f'~/{datetime.now().year} '
 		'pollyanna assignments.csv')
 	with open(filename, 'w') as csvFile:
 		csvFile.write("Full Name, Email Address, Assigned, "
@@ -208,7 +209,12 @@ def email_group(group: PollyannaGroup, template: EmailTemplate,
 		suffix='%(percent).1f%% - %(eta)ds') as bar:
 		for person in group:
 			html = minify(template.render_for_person(person), minify_js=True,
-				remove_processing_instructions=True)
+				remove_processing_instructions=True,
+				minify_css=True,
+				do_not_minify_doctype=True,
+				keep_html_and_head_opening_tags=True,
+				keep_spaces_between_attributes=True,
+				ensure_spec_compliant_unquoted_attribute_values=True)
 			txt = txtTemplate.render_for_person(person)
 			if is_test:
 				email = Email(person.EmailAddress, html, txt, TXTHandler("creds.conf"))

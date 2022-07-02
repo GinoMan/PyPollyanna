@@ -2,6 +2,7 @@
 # Written by Gino Vincenzini
 # Copyright 2021 Gino Vincenzini. Licensed under MIT License
 
+from abc import ABCMeta, abstractmethod
 from re import sub
 from os import mkdir
 from os.path import expanduser, isdir, join
@@ -12,23 +13,30 @@ from smtplib import SMTP, SMTPConnectError, SMTPException
 from typing import Optional
 
 
-class EmailHandler:
-	def __init__(self, configFilePath: str):
+class EmailHandler (metaclass=ABCMeta):
+	@abstractmethod
+	def __init__(self, configFilePath: str) -> None:
 		pass
-
-	def __del__(self):
+	
+	@abstractmethod
+	def __del__(self) -> None:
 		pass
+	
+	@abstractmethod
+	def SendEmail(self, destination: str, content: str,
+		text_content: str) -> list[str]:
+		return []
 
-	def SendEmail(self, destination: str, content: str, text_content: str):
+	@abstractmethod
+	def Connect(self) -> None:
 		pass
-
-	def Connect(self):
-		pass
-
+	
+	@abstractmethod
 	def TestConnection(self) -> tuple[bool, str]:
 		return False, "Not Implemented"
 
 
+@EmailHandler.register
 class SMTPHandler (EmailHandler):
 	server = ""
 	port = 0
@@ -40,7 +48,7 @@ class SMTPHandler (EmailHandler):
 	system: SMTP
 	connected: bool = False
 	
-	def __init__(self, configFilePath: str):
+	def __init__(self, configFilePath: str) -> None:
 		self.config = ConfigParser()
 		self.config.read(configFilePath)
 		self.username = self.config['DEFAULT']['Email']
@@ -49,12 +57,13 @@ class SMTPHandler (EmailHandler):
 		self.port = int(self.config['DEFAULT']['SMTPPort'])
 		self.security = self.config['DEFAULT']['SMTPSecurity']
 
-	def __del__(self):
+	def __del__(self) -> None:
 		self.connected = False
 		self.system.quit()
 		del(self.system)
 		
-	def SendEmail(self, destination: str, content: str, text_content: str):
+	def SendEmail(self, destination: str, content: str,
+		text_content: str) -> list[str]:
 		if not self.connected:
 			self.Connect()
 		msg = MIMEMultipart('alternative')
@@ -70,8 +79,9 @@ class SMTPHandler (EmailHandler):
 
 		# self.system.set_debuglevel(1)
 		self.system.sendmail(self.username, [destination], msg.as_string())
+		return msg.as_string().splitlines()
 
-	def Connect(self):
+	def Connect(self) -> None:
 		# Setup the SMTP system.
 		self.system = SMTP(host=self.server, port=self.port)
 		if self.security == 'TLS' and self.port != 25:
@@ -98,12 +108,13 @@ class SMTPHandler (EmailHandler):
 		return True, "OK"
 
 
+@EmailHandler.register
 class TXTHandler (EmailHandler):
 	config: ConfigParser
 	username: str
 	config_file_path: str
 	
-	def __init__(self, configFilePath: str = ""):
+	def __init__(self, configFilePath: str = "") -> None:
 		self.config = ConfigParser()
 		if configFilePath:
 			self.config_file_path = configFilePath
@@ -112,16 +123,17 @@ class TXTHandler (EmailHandler):
 		else:
 			self.username = "Facilitator@pollyanna.com"
 	
-	def __del__(self):
+	def __del__(self) -> None:
 		pass
 
-	def Connect(self):
+	def Connect(self) -> None:
 		pass
 
-	def TestConnection(self):
-		return True
+	def TestConnection(self) -> tuple[bool, str]:
+		return True, "OK"
 
-	def SendEmail(self, destination: str, content: str, text_content: str):
+	def SendEmail(self, destination: str, content: str,
+		text_content: str) -> list[str]:
 		fileName = sub("@.*", "", destination)
 		fileName += ".email.txt"
 		outputDir = expanduser('~/OutputMessages')
