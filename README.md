@@ -5,7 +5,7 @@
 [![Lines of code](https://img.shields.io/tokei/lines/github/GinoMan/PyPollyanna?label=Total%20Lines&logo=github&logoColor=white&style=flat)](https://github.com/GinoMan/PyPollyanna)
 [![GitHub License](https://img.shields.io/github/license/GinoMan/PyPollyanna?label=License&logo=creativecommons&logoColor=white&style=flat)](https://github.com/GinoMan/PyPollyanna/blob/master/LICENSE)
 [![GitHub Downloads](https://img.shields.io/github/downloads/GinoMan/PyPollyanna/total?label=Github%20Downloads&logo=github)](https://github.com/GinoMan/PyPollyanna/releases)
-[![Python 3.9+](https://img.shields.io/badge/Platform-Python_3.9-yellow?logo=python&logoColor=white&style=flat)](https://autohotkey.com)
+[![Python 3.9+](https://img.shields.io/badge/Platform-Python_3.9%2B-yellow?logo=python&logoColor=white&style=flat)](https://python.org)
 
 Christmas is almost here and it's time to pick who's gifting to whom this Christmas. You can always get your group together and pick names out of a hat, but the problem is that sometimes people will pick their significant other \(so why have a Pollyanna for them\), or they pick themselves and have to draw again. So what to do? How about let the computer make sure that everything is fine?
 
@@ -15,17 +15,17 @@ That's where PyPollyanna comes in. I wrote it for my own family's yearly Pollyan
 
 ### Runtime Requirements ###
 
-- Python Version: 3.9+
-- [colorama](https://pypi.org/project/colorama/): 0.4.4
-- [Jinja2](https://pypi.org/project/Jinja2/): 3.0.3
-- [minify_html](https://pypi.org/project/minify-html/): 0.7.0
-- [progress](https://pypi.org/project/minify-html/): 1.6
+- [![Python 3.9+](https://img.shields.io/badge/Platform-Python_3.9%2B-yellow?logo=python&logoColor=white&style=flat)](https://python.org)
+- [![colorama 0.4.4](https://img.shields.io/badge/colorama-0.4.4-yellow?logo=python&logoColor=white](https://pypi.org/project/colorama)
+- [![Jinja2 3.0.3](https://img.shields.io/badge/Jinja2-3.0.3-yellow?logo=jinja&logoColor=white](https://pypi.org/project/Jinja2/)
+- [minify_html 0.7.0](https://pypi.org/project/minify-html/)
+- [progress 1.6](https://pypi.org/project/minify-html/)
 
 ### Development Requirements ###
 
-- [check-requirements-txt](https://pypi.org/project/check-requirements-txt/): 1.0.2
-- [flake8](https://pypi.org/project/flake8/): 4.0.1
-- [pytest](https://pypi.org/project/pytest/): 6.2.5
+- [check-requirements-txt: 1.0.2](https://pypi.org/project/check-requirements-txt/)
+- [flake8: 4.0.1](https://pypi.org/project/flake8/)
+- [pytest: 6.2.5](https://pypi.org/project/pytest/)
 
 ### Recommended Environment ###
 
