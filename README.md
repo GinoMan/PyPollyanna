@@ -1,6 +1,6 @@
 # PyPollyanna #
 
-[![Author - Gino Vincenzini](https://raw.githubusercontent.com/GinoMan/PyPollyanna/master/docs/images/Author-Gino%20Vincenzini-brightgreen.png)](https://ginovincenzini.com/)
+[![Author - Gino Vincenzini](https://raw.githubusercontent.com/GinoMan/PyPollyanna/master/docs/images/Author-Gino%20Vincenzini-brightgreen-badge.png)](https://ginovincenzini.com/)
 
 [![Lines of code](https://img.shields.io/tokei/lines/github/GinoMan/PyPollyanna?label=Total%20Lines&logo=github&logoColor=white&style=flat)](https://github.com/GinoMan/PyPollyanna)
 [![GitHub License](https://img.shields.io/github/license/GinoMan/PyPollyanna?label=License&logo=creativecommons&logoColor=white&style=flat)](https://github.com/GinoMan/PyPollyanna/blob/master/LICENSE)
