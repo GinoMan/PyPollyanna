@@ -16,8 +16,8 @@ That's where PyPollyanna comes in. I wrote it for my own family's yearly Pollyan
 ### Runtime Requirements ###
 
 - [![Python 3.9+](https://img.shields.io/badge/Platform-Python_3.9%2B-yellow?logo=python&logoColor=white&style=flat)](https://python.org)
-- [![colorama 0.4.4](https://img.shields.io/badge/colorama-0.4.4-yellow?logo=python&logoColor=white&style=flat](https://pypi.org/project/colorama)
-- [![Jinja2 3.0.3](https://img.shields.io/badge/Jinja2-3.0.3-yellow?logo=jinja&logoColor=white&style=flat](https://pypi.org/project/Jinja2/)
+- [![colorama 0.4.4](https://img.shields.io/badge/colorama-0.4.4-yellow?logo=python&logoColor=white&style=flat)](https://pypi.org/project/colorama)
+- [![Jinja2 3.0.3](https://img.shields.io/badge/Jinja2-3.0.3-yellow?logo=jinja&logoColor=white&style=flat)](https://pypi.org/project/Jinja2/)
 - [minify_html 0.7.0](https://pypi.org/project/minify-html/)
 - [progress 1.6](https://pypi.org/project/minify-html/)
 
