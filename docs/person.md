@@ -63,7 +63,7 @@ The `mate` method takes in a list of available people to connect to for gifting 
 
 ## PollyannaGroup class ##
 
-This class pretends to be a Dictionary/Array that contains all of the [`Person`](#Person-class) objects which it generates from a [CSV file](https://github.com/GinoMan/PyPollyanna/blob/master/docs/data.md).
+This class pretends to be a Dictionary/Array that contains all of the [`Person`](#Person-class) objects which it generates from a [CSV file](https://github.com/GinoMan/PyPollyanna/blob/master/docs/data.md). It acts as a wrapper for a list object that has all of the ['Person'][person-class] objects generated and provides a shuffle method that assigns everyone to random other persons in the list. It's also iterable so it can be used in `for ... in ...` loops and list comprehensions. 
 
 ### PollyannaGroup Properties ###
 
@@ -71,7 +71,11 @@ This class pretends to be a Dictionary/Array that contains all of the [`Person`]
 
 ### PollyannaGroup.\_\_init\_\_(self, filename: str) -> None ###
 
+This is the constructor for the PollyannaGroup class. It initializes `self.people` with an empty list. Then it opens the provided filename which is a CSV file and uses [`DictReader`][csvlib-dictreader] to create a ['Person'][person-class] object from each row in the CSV file and appending that person to the internal `self.people` list.
+
 ### PollyannaGroup.\_\_getitem\_\_(self, key: Union\[str, int\]) -> Person ###
+
+
 
 ### PollyannaGroup.\_\_str\_\_(self) -> str ###
 

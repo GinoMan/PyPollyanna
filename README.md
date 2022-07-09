@@ -1,5 +1,12 @@
 # PyPollyanna #
 
+[![Author - Gino Vincenzini](/docs/images/Author-Gino%20Vincenzini-brightgreen.png)](https://ginovincenzini.com/)
+
+[![Lines of code](https://img.shields.io/tokei/lines/github/GinoMan/PyPollyanna?label=Total%20Lines&logo=github&logoColor=white&style=flat)](https://github.com/GinoMan/PyPollyanna)
+[![GitHub License](https://img.shields.io/github/license/GinoMan/PyPollyanna?label=License&logo=creativecommons&logoColor=white&style=flat)](https://github.com/GinoMan/PyPollyanna/blob/master/LICENSE)
+[![GitHub Downloads](https://img.shields.io/github/downloads/GinoMan/PyPollyanna/total?label=Github%20Downloads&logo=github)](https://github.com/GinoMan/PyPollyanna/releases)
+[![Python 3.9+](https://img.shields.io/badge/Platform-Python_3.9-yellow?logo=python&logoColor=white&style=flat)](https://autohotkey.com)
+
 Christmas is almost here and it's time to pick who's gifting to whom this Christmas. You can always get your group together and pick names out of a hat, but the problem is that sometimes people will pick their significant other \(so why have a Pollyanna for them\), or they pick themselves and have to draw again. So what to do? How about let the computer make sure that everything is fine?
 
 That's where PyPollyanna comes in. I wrote it for my own family's yearly Pollyanna and we're currently using it this year. The program reads a list of participants from a CSV file, parses it into a list of people, and then pairs them up according to their parameters \(who their spouse is, who they feel like they always get, etc.\). It then creates an email to each of them and sends them a personalized email with their partner's name and amazon wish list.

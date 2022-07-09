@@ -65,17 +65,19 @@ class EmailTemplate:
 		
 	def render(self):
 		self.template_object = self.env.get_template(self.filename)
-		self.rendering = self.template_object.render(
-			recipient=self.recipient,
-			assignedName=self.assignedName,
-			assignedNameFull=self.assignedNameFull,
-			amazonWishList=self.amazonWishList,
-			html=self.is_html,
-			facilitator=self.facilitator,
-			contest=self.contest,
-			reward=self.prize,
-			date=date,
-			timedelta=timedelta)
+		rendering_params = {
+			"recipient": self.recipient,
+			"assignedName": self.assignedName,
+			"assignedNameFull": self.assignedNameFull,
+			"amazonWishList": self.amazonWishList,
+			"html": self.is_html,
+			"facilitator": self.facilitator,
+			"contest": self.contest,
+			"reward": self.prize,
+			"date": date,
+			"timedelta": timedelta
+		}
+		self.rendering = self.template_object.render(**rendering_params)
 		return self.rendering
 		
 	def set_values(self, recipient, assignedName,

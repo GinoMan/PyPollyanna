@@ -118,8 +118,11 @@ def display_associations(group: PollyannaGroup):
 	reset_terminal_colors()
 
 
-def negative_answer(prompt_str: str, pos_answer='Y') -> bool:
+# TODO: Add support for *args **kwargs.
+def negative_answer(prompt_str: str,
+	pos_answer: str = 'Y') -> bool:
 	"""Returns whether the user responded negatively to the prompt.
+
 	It may seem confusing that the answer is in the negative, but the
 	whole point is to allow the program or function to fail out if they
 	do.

@@ -4,3 +4,4 @@ OutputMessages
 .pytest_cache
 creds.conf
 data.csv
+docs/.link-list.md
