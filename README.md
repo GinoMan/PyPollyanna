@@ -29,7 +29,7 @@ That's where PyPollyanna comes in. I wrote it for my own family's yearly Pollyan
 
 ### Recommended Environment ###
 
-- [![Editor Visual Studio Code](https://img.shields.io/badge/Editor-Visual Studio Code-blue?logo=visualstudiocode&logoColor=white&style=flat)](https://code.visualstudio.com)
+- [![Editor Visual Studio Code](https://img.shields.io/badge/Editor-Visual%20Studio%20Code-blue?logo=visualstudiocode&logoColor=white&style=flat)](https://code.visualstudio.com)
 - [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-yellow?logo=python&logoColor=white&style=flat)](https://python.org)
 - [![Git 2.36.1+](https://img.shields.io/badge/Git-2.36.1+-green?logo=git&logoColor=white&style=flat)](https://git-scm.com/)
 
