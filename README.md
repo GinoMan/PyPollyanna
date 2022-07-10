@@ -23,15 +23,15 @@ That's where PyPollyanna comes in. I wrote it for my own family's yearly Pollyan
 
 ### Development Requirements ###
 
-- [check-requirements-txt: 1.0.2](https://pypi.org/project/check-requirements-txt/)
-- [flake8: 4.0.1](https://pypi.org/project/flake8/)
-- [pytest: 6.2.5](https://pypi.org/project/pytest/)
+- [![check-requirements-txt 1.0.2](https://img.shields.io/badge/check--requirements--txt-1.0.2-yellow?logo=python&logoColor=white&style=flat)](https://pypi.org/project/check-requirements-txt/)
+- [![flake8 4.0.1](https://img.shields.io/badge/flake8-4.0.1-yellow?logo=python&logoColor=white&style=flat)](https://pypi.org/project/flake8/)
+- [![pytest 6.2.5](https://img.shields.io/badge/pytest-6.2.5-yellow?logo=python&logoColor=white&style=flat)](https://pypi.org/project/pytest/)
 
 ### Recommended Environment ###
 
-- [Visual Studio Code](https://code.visualstudio.com)
-- [Python 3.9+](https://python.org)
-- [Git 2.36.1+](https://git-scm.com/)
+- [![Editor Visual Studio Code](https://img.shields.io/badge/Editor-Visual Studio Code-blue?logo=visualstudiocode&logoColor=white&style=flat)](https://code.visualstudio.com)
+- [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-yellow?logo=python&logoColor=white&style=flat)](https://python.org)
+- [![Git 2.36.1+](https://img.shields.io/badge/Git-2.36.1+-green?logo=git&logoColor=white&style=flat)](https://git-scm.com/)
 
 #### Recommended VSCode Plugins ####
 
