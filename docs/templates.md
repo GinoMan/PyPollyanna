@@ -129,13 +129,13 @@ This module imports several standard as well as external libraries:
 [Person-class]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#person-class
 [Person-init]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#person__init__self-csvline-dictstr-str---none
 [Person-str]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#person__str__self---str
-[Person-mate]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#personmateself-available-listperson---person
+[Person-mate]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#personmateself-available-listperson---unionperson-none
 
 [PollyannaGroup-class]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup-class
 [PollyannaGroup-init]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__init__self-filename-str---none
 [PollyannaGroup-getitem]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__getitem__self-key-unionstr-int---person
 [PollyannaGroup-str]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__str__self---str
-[PollyannaGroup-iter]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__iter__self---person
+[PollyannaGroup-iter]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__iter__self---iterableperson
 [PollyannaGroup-len]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__len__self---int
 [PollyannaGroup-shuffle]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroupshuffleself---none
 

@@ -57,7 +57,7 @@ The `dict[str, str]` is what is provided by [`DictReader`][csvLib-dictreader] wh
 
 Returns a string representing some of the data in the Person class. There is some commented code that prints additional information but this is only used for debugging purposes.
 
-### Person.mate(self, available: list\['Person'\]) -> Person ###
+### Person.mate(self, available: list\['Person'\]) -> Union['Person', None] ###
 
 The `mate` method takes in a list of available people to connect to for gifting (i.e. those who haven't already been chosen). It produces a copy of the list and then removes this person instance's `Spouse`, `AlwaysGets`, and itself (`self.IDNumber`) by iterating through the list and checking if that person's ID is in the list of IDs to remove. It then checks if the resulting list is empty and if so returns `None`. Otherwise it uses the `random.choice()` function to pick from the remaining entries and assigns that to this person's `GiftsTo` property. Finally it returns the pick in case it is needed by the caller.
 
@@ -75,15 +75,46 @@ This is the constructor for the PollyannaGroup class. It initializes `self.peopl
 
 ### PollyannaGroup.\_\_getitem\_\_(self, key: Union\[str, int\]) -> Person ###
 
+This method allows for the use of square bracket syntax to look-up a Person object in the group. You can look up by ID (so a number) or by First or Full Name. 
 
+Examples:
+
+```python
+group = PollyannaGroup("data.csv")
+
+# Look up by ID Number:
+someone = group[1]
+
+# Look up by First Name:
+someoneElse = group["Jackson"]
+
+# look up by Full Name:
+someoneMore = group["Exer Campbell"]
+```
 
 ### PollyannaGroup.\_\_str\_\_(self) -> str ###
 
-### PollyannaGroup.\_\_iter\_\_(self) -> Person ###
+Converts the group to string listing each person in the group in the following format:
+
+\[Number\] \| \[Full Name\] (\[First Name\]) Married To ID: \[Spouse.ID\] - Assigned to: \[GiftsTo.Name\]
+
+of if they are not assigned:
+
+\[Number\] \| \[Full Name\] (\[First Name\]) Married To ID: \[Spouse.ID\] - Not Assigned To Anyone...
+
+Each entry is on its own line but is all in one string. 
+
+### PollyannaGroup.\_\_iter\_\_(self) -> Iterable\[Person\] ###
+
+Simply returns the iterator for the List of Persons contained in the class enabling use in iteration statements (usually for ... in ... loops).
 
 ### PollyannaGroup.\_\_len\_\_(self) -> int ###
 
+Returns the number of entries in the group.
+
 ### PollyannaGroup.shuffle(self) -> None ###
+
+Uses the "Person.Mate" method to randomly pair up the participants observing the rules of not getting yourself, your spouse, or the person you "always get".
 
 [argparse]: https://docs.python.org/3.9/library/argparse.html
 [argparse-ArgumentParser]: https://docs.python.org/3.9/library/argparse.html#argparse.ArgumentParser
@@ -176,13 +207,13 @@ This is the constructor for the PollyannaGroup class. It initializes `self.peopl
 [Person-class]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#person-class
 [Person-init]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#person__init__self-csvline-dictstr-str---none
 [Person-str]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#person__str__self---str
-[Person-mate]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#personmateself-available-listperson---person
+[Person-mate]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#personmateself-available-listperson---unionperson-none
 
 [PollyannaGroup-class]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup-class
 [PollyannaGroup-init]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__init__self-filename-str---none
 [PollyannaGroup-getitem]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__getitem__self-key-unionstr-int---person
 [PollyannaGroup-str]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__str__self---str
-[PollyannaGroup-iter]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__iter__self---person
+[PollyannaGroup-iter]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__iter__self---iterableperson
 [PollyannaGroup-len]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__len__self---int
 [PollyannaGroup-shuffle]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroupshuffleself---none
 

@@ -4,7 +4,7 @@
 
 from csv import DictReader
 from random import choice
-from typing import Union
+from typing import Union, Iterable
 
 
 def try_int(string: Union[str, bytes, bytearray],
@@ -25,7 +25,7 @@ class Person:
 	AlwaysGets: int = 0
 	GiftsTo: 'Person'
 	
-	def __init__(self, csvLine: dict):
+	def __init__(self, csvLine: dict) -> None:
 		self.Name = csvLine["Name"]
 		self.FullName = csvLine["Full Name"]
 		self.EmailAddress = csvLine["Email Address"]
@@ -38,7 +38,7 @@ class Person:
 		self.Spouse = spouse if spouse is not False else 0
 		self.AlwaysGets = alwaysGets if alwaysGets is not False else 0
 	
-	def __str__(self):
+	def __str__(self) -> str:
 		rep = (f"{self.IDNumber} | {self.FullName} ({self.Name})"
 		f": Married To ID: {self.Spouse} - ")
 
@@ -57,7 +57,7 @@ class Person:
 			rep += "Not Assigned To Anyone..."
 		return rep
 	
-	def mate(self, available: list['Person']):
+	def mate(self, available: list['Person']) -> Union['Person', None]:
 		locallyAvailable = available.copy()
 		removeGroup = [self.Spouse, self.AlwaysGets, self.IDNumber]
 		# remove self, spouse, and always get
@@ -75,7 +75,7 @@ class Person:
 class PollyannaGroup:
 	people: list[Person]
 	
-	def __init__(self, fileName: str):
+	def __init__(self, fileName: str) -> None:
 		self.people = []
 		with open(fileName, newline='\n', encoding="UTF-8-sig") as csv_file:
 			reader = DictReader(csv_file, delimiter=',',
@@ -83,7 +83,7 @@ class PollyannaGroup:
 			for row in reader:
 				self.people.append(Person(row))
 	
-	def __getitem__(self, key: Union[str, int]):
+	def __getitem__(self, key: Union[str, int]) -> Person:
 		for item in self.people:
 			if isinstance(key, int) and item.IDNumber == key:
 				return item
@@ -94,19 +94,19 @@ class PollyannaGroup:
 				continue
 		raise KeyError(f"Nobody has an ID of {key}")
 			
-	def __str__(self):
+	def __str__(self) -> str:
 		representation = ""
 		for person in self.people:
 			representation += f"{str(person)}\n"
 		return representation
 	
-	def __iter__(self):
+	def __iter__(self) -> Iterable[Person]:
 		return iter(self.people)
 	
-	def __len__(self):
+	def __len__(self) -> int:
 		return len(self.people)
 	
-	def shuffle(self):
+	def shuffle(self) -> None:
 		while True:
 			assignedAlready = []
 			breakCondition = True
