@@ -10,6 +10,8 @@ This module imports several standard as well as external libraries:
 
 ### Standard Library ###
 
+[`abc`][abc]: [`ABCMeta`][abc-abcmeta], [`abstractmethod`][abc-abstractmethod]
+
 [`re`][re]: [`sub`][re-sub]
 
 [`os`][os]: [`mkdir`][os-mkdir]
@@ -27,6 +29,10 @@ This module imports several standard as well as external libraries:
 [`typing`][typing]: [`Optional`][typing-Optional]
 
 ## EmailHandler class ##
+
+This class acts as a protocol for email handlers. As long as these five methods are implemented, The main method can be changed to support more output sources (stdout, Microsoft Exchange, etc). It defines the five methods below which any handler must implement to be dropped in to email the rendered template. The methods are documented below. 
+
+The protocol/interface spec is enforced using the `ABCMeta` class and the `@abstractmethod` decorator.
 
 ### EmailHandler.\_\_init\_\_(self, configFilePath: str) -> None ###
 
@@ -75,6 +81,10 @@ This module imports several standard as well as external libraries:
 ### Email.\_\_str\_\_(self) -> str ###
 
 ### Email.SendEmail(self) -> None ###
+
+[abc]: https://docs.python.org/3.9/library/abc.html
+[abc-abcmeta]: https://docs.python.org/3.9/library/abc.html#abc.ABCMeta
+[abc-abstractmethod]: https://docs.python.org/3.9/library/abc.html#abc.abstractmethod
 
 [argparse]: https://docs.python.org/3.9/library/argparse.html
 [argparse-ArgumentParser]: https://docs.python.org/3.9/library/argparse.html#argparse.ArgumentParser
@@ -129,6 +139,7 @@ This module imports several standard as well as external libraries:
 [typing]: https://docs.python.org/3.9/library/typing.html
 [typing-Union]: https://docs.python.org/3.9/library/typing.html#typing.Union
 [typing-Optional]: https://docs.python.org/3.9/library/typing.html#typing.Optional
+[typing-iterable]: https://docs.python.org/3.9/library/typing.html#typing.Iterable
 
 [colorama]: https://github.com/tartley/colorama
 [colorama-back]: https://github.com/tartley/colorama#colored-output

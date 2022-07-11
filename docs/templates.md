@@ -40,6 +40,10 @@ This module imports several standard as well as external libraries:
 
 ### EmailTemplate.set_values(self, recipient: str, assignedName: str, assignedNameFull: str, amazonWishList: str) -> None ###
 
+[abc]: https://docs.python.org/3.9/library/abc.html
+[abc-abcmeta]: https://docs.python.org/3.9/library/abc.html#abc.ABCMeta
+[abc-abstractmethod]: https://docs.python.org/3.9/library/abc.html#abc.abstractmethod
+
 [argparse]: https://docs.python.org/3.9/library/argparse.html
 [argparse-ArgumentParser]: https://docs.python.org/3.9/library/argparse.html#argparse.ArgumentParser
 [argparse-Namespace]: https://docs.python.org/3.9/library/argparse.html#the-namespace-object
@@ -93,6 +97,7 @@ This module imports several standard as well as external libraries:
 [typing]: https://docs.python.org/3.9/library/typing.html
 [typing-Union]: https://docs.python.org/3.9/library/typing.html#typing.Union
 [typing-Optional]: https://docs.python.org/3.9/library/typing.html#typing.Optional
+[typing-iterable]: https://docs.python.org/3.9/library/typing.html#typing.Iterable
 
 [colorama]: https://github.com/tartley/colorama
 [colorama-back]: https://github.com/tartley/colorama#colored-output

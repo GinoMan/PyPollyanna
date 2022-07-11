@@ -16,7 +16,7 @@ This module imports several standard as well as external libraries:
 
 [`random`][random]: [`choice`][random-choice]
 
-[`typing`][typing]: [`Union`][typing-union]
+[`typing`][typing]: [`Union`][typing-union], [`Iterable`][typing-iterable]
 
 ## try_int(string: Union\[str, bytes, bytearray\], base: int = 10) -> Union\[int, bool\] ##
 
@@ -124,6 +124,10 @@ Then, it checks then if any of the rules are broken by the match: it couldn't as
 
 This resets the state and we try again. Since the references are re-assigned, only the two variables inside the while loop need to be reset.
 
+[abc]: https://docs.python.org/3.9/library/abc.html
+[abc-abcmeta]: https://docs.python.org/3.9/library/abc.html#abc.ABCMeta
+[abc-abstractmethod]: https://docs.python.org/3.9/library/abc.html#abc.abstractmethod
+
 [argparse]: https://docs.python.org/3.9/library/argparse.html
 [argparse-ArgumentParser]: https://docs.python.org/3.9/library/argparse.html#argparse.ArgumentParser
 [argparse-Namespace]: https://docs.python.org/3.9/library/argparse.html#the-namespace-object
@@ -177,6 +181,7 @@ This resets the state and we try again. Since the references are re-assigned, on
 [typing]: https://docs.python.org/3.9/library/typing.html
 [typing-Union]: https://docs.python.org/3.9/library/typing.html#typing.Union
 [typing-Optional]: https://docs.python.org/3.9/library/typing.html#typing.Optional
+[typing-iterable]: https://docs.python.org/3.9/library/typing.html#typing.Iterable
 
 [colorama]: https://github.com/tartley/colorama
 [colorama-back]: https://github.com/tartley/colorama#colored-output

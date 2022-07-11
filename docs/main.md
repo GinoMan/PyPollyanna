@@ -121,6 +121,10 @@ The third and final phase is to generate the templates and if the user has not s
 
 This invocation allows the `main.py` file to be referenced as a library. I wouldn't recommend it as it's not exactly built for that but it can be done if you want to borrow any of the functions in the code. Otherwise, it runs the `main()` function just like in a C-like language. It also includes a `try`/`finally` invocation to ensure that the terminal colors are reset and that colorama is uninitialized.
 
+[abc]: https://docs.python.org/3.9/library/abc.html
+[abc-abcmeta]: https://docs.python.org/3.9/library/abc.html#abc.ABCMeta
+[abc-abstractmethod]: https://docs.python.org/3.9/library/abc.html#abc.abstractmethod
+
 [argparse]: https://docs.python.org/3.9/library/argparse.html
 [argparse-ArgumentParser]: https://docs.python.org/3.9/library/argparse.html#argparse.ArgumentParser
 [argparse-Namespace]: https://docs.python.org/3.9/library/argparse.html#the-namespace-object
@@ -174,6 +178,7 @@ This invocation allows the `main.py` file to be referenced as a library. I would
 [typing]: https://docs.python.org/3.9/library/typing.html
 [typing-Union]: https://docs.python.org/3.9/library/typing.html#typing.Union
 [typing-Optional]: https://docs.python.org/3.9/library/typing.html#typing.Optional
+[typing-iterable]: https://docs.python.org/3.9/library/typing.html#typing.Iterable
 
 [colorama]: https://github.com/tartley/colorama
 [colorama-back]: https://github.com/tartley/colorama#colored-output
