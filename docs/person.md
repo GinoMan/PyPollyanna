@@ -114,7 +114,13 @@ Returns the number of entries in the group.
 
 ### PollyannaGroup.shuffle(self) -> None ###
 
-Uses the "Person.Mate" method to randomly pair up the participants observing the rules of not getting yourself, your spouse, or the person you "always get".
+Uses the "Person.Mate" method to randomly pair up the participants observing the rules of not getting yourself, your spouse, or the person you "always get". It loops infinitely until everyone is paired up. So the pairing is always guaranteed to succeed.
+
+It works by creating an empty `"assignedAlready"` List to store all the picks that have been made (to prevent multiple persons getting the same person to get a gift for), and adding to that list every iteration every person who has been assigned. This outer loop repeats every time the inner `for` loop fails to assign everyone. It gets a copy of everyone, removes every object reference from that copy of the list everyone that has been assigned already, and then calls the `mate` method.
+
+Then, it checks then if any of the rules are broken by the match: it couldn't assign anyone, it assigned themselves, it assigned the person they always get, or it assigns their spouse. If any of these are met, the `breakCondition` is set to `False`, and the for-loop is broken out of to restart the process from the beginning.
+
+This resets the state and we try again. Since the references are re-assigned, only the two variables inside the while loop need to be reset.
 
 [argparse]: https://docs.python.org/3.9/library/argparse.html
 [argparse-ArgumentParser]: https://docs.python.org/3.9/library/argparse.html#argparse.ArgumentParser
