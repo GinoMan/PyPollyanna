@@ -1,5 +1,7 @@
 # Person.py File Notes #
 
+[![Author - Gino Vincenzini](https://raw.githubusercontent.com/GinoMan/PyPollyanna/master/docs/images/Author-Gino%20Vincenzini-brightgreen-badge.png)](https://ginovincenzini.com/)
+
 ## Summary ##
 
 Person.py contains both classes pertaining to the Pollyanna game itself: [`Person`][person-class] and [`PollyannaGroup`][pollyannagroup-class]. These classes are used to initialize the Pollyanna pairings from a csv file containing information about each participant.
@@ -89,7 +91,7 @@ someone = group[1]
 someoneElse = group["Jackson"]
 
 # look up by Full Name:
-someoneMore = group["Exer Campbell"]
+someoneMore = group["Exer Campbell"]  # Character from Jackson's Diary Web-comic
 ```
 
 ### PollyannaGroup.\_\_str\_\_(self) -> str ###

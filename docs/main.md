@@ -1,5 +1,7 @@
 # main.py File Notes #
 
+[![Author - Gino Vincenzini](https://raw.githubusercontent.com/GinoMan/PyPollyanna/master/docs/images/Author-Gino%20Vincenzini-brightgreen-badge.png)](https://ginovincenzini.com/)
+
 ## Summary ##
 
 This file contains the main method as well as some miscellaneous methods and a global that is used by the main function and its ancillary functions. Other files are reserved for particular classes within a domain and are documented in their respective markdown files.

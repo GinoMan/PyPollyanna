@@ -1,5 +1,7 @@
 # SendEmail.py File Notes #
 
+[![Author - Gino Vincenzini](https://raw.githubusercontent.com/GinoMan/PyPollyanna/master/docs/images/Author-Gino%20Vincenzini-brightgreen-badge.png)](https://ginovincenzini.com/)
+
 ## Summary ##
 
 ## Imports ##
