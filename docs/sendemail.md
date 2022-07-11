@@ -30,7 +30,7 @@ This module imports several standard as well as external libraries:
 
 ## EmailHandler class ##
 
-This class acts as a protocol for email handlers. As long as these five methods are implemented, The main method can be changed to support more output sources (stdout, Microsoft Exchange, etc). It defines the five methods below which any handler must implement to be dropped in to email the rendered template. The methods are documented below. 
+This class acts as a protocol for email handlers. As long as these five methods are implemented, The main method can be changed to support more output sources (stdout, Microsoft Exchange, etc). It defines the five methods below which any handler must implement to be dropped in to email the rendered template. The methods are documented below.
 
 The protocol/interface spec is enforced using the `ABCMeta` class and the `@abstractmethod` decorator.
 

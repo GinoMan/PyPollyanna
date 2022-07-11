@@ -127,7 +127,7 @@ The Facilitator section includes the name of the facilitator and the name of the
 
 ## Templates ##
 
-There are two templates in the "Template" folder and these are used for the email that is sent to everyone. The two template.\[txt|html\].jinja files indicate the formatting for both the html and text only versions of the email. The master.jinja file indicates the text common to both as well as the variables used by its sections and the templates. 
+There are two templates in the "Template" folder and these are used for the email that is sent to everyone. The two template.\[txt|html\].jinja files indicate the formatting for both the html and text only versions of the email. The master.jinja file indicates the text common to both as well as the variables used by its sections and the templates.
 
 ### Master Template ###
 

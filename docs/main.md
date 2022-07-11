@@ -70,7 +70,7 @@ This function only prints a listing of all of the assignment associations betwee
 
 ## display_associations(group: PollyannaGroup) -> None ##
 
-This function displays the output from the `display_group()` function in a pretty format. It prints a line in red explaining that these are the associations, changes the color output to green text, and then prints the output of `display_group()`. Finally it resets the terminal colors using the `reset_terminal_colors()` function. 
+This function displays the output from the `display_group()` function in a pretty format. It prints a line in red explaining that these are the associations, changes the color output to green text, and then prints the output of `display_group()`. Finally it resets the terminal colors using the `reset_terminal_colors()` function.
 
 ## negative_answer(prompt_str: str, pos_answer: str = 'Y') -> bool ##
 
