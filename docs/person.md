@@ -16,7 +16,7 @@ This module imports several standard as well as external libraries:
 
 [`random`][random]: [`choice`][random-choice]
 
-[`typing`][typing]: [`Union`][typing-union], [`Iterable`][typing-iterable]
+[`typing`][typing]: [`Union`][typing-union], [`Iterator`][typing-iterator]
 
 ## try_int(string: Union\[str, bytes, bytearray\], base: int = 10) -> Union\[int, bool\] ##
 
@@ -65,7 +65,7 @@ The `mate` method takes in a list of available people to connect to for gifting 
 
 ## PollyannaGroup class ##
 
-This class pretends to be a Dictionary/Array that contains all of the [`Person`](#Person-class) objects which it generates from a [CSV file](https://github.com/GinoMan/PyPollyanna/blob/master/docs/data.md). It acts as a wrapper for a list object that has all of the ['Person'][person-class] objects generated and provides a shuffle method that assigns everyone to random other persons in the list. It's also iterable so it can be used in `for ... in ...` loops and list comprehensions. 
+This class pretends to be a Dictionary/Array that contains all of the [`Person`](#Person-class) objects which it generates from a [CSV file](https://github.com/GinoMan/PyPollyanna/blob/master/docs/data.md). It acts as a wrapper for a list object that has all of the ['Person'][person-class] objects generated and provides a shuffle method that assigns everyone to random other persons in the list. It's also iterable so it can be used in `for ... in ...` loops and list comprehensions.
 
 ### PollyannaGroup Properties ###
 
@@ -77,7 +77,7 @@ This is the constructor for the PollyannaGroup class. It initializes `self.peopl
 
 ### PollyannaGroup.\_\_getitem\_\_(self, key: Union\[str, int\]) -> Person ###
 
-This method allows for the use of square bracket syntax to look-up a Person object in the group. You can look up by ID (so a number) or by First or Full Name. 
+This method allows for the use of square bracket syntax to look-up a Person object in the group. You can look up by ID (so a number) or by First or Full Name.
 
 Examples:
 
@@ -104,7 +104,7 @@ of if they are not assigned:
 
 \[Number\] \| \[Full Name\] (\[First Name\]) Married To ID: \[Spouse.ID\] - Not Assigned To Anyone...
 
-Each entry is on its own line but is all in one string. 
+Each entry is on its own line but is all in one string.
 
 ### PollyannaGroup.\_\_iter\_\_(self) -> Iterator\[Person\] ###
 
@@ -181,7 +181,7 @@ This resets the state and we try again. Since the references are re-assigned, on
 [typing]: https://docs.python.org/3.9/library/typing.html
 [typing-Union]: https://docs.python.org/3.9/library/typing.html#typing.Union
 [typing-Optional]: https://docs.python.org/3.9/library/typing.html#typing.Optional
-[typing-iterable]: https://docs.python.org/3.9/library/typing.html#typing.Iterable
+[typing-iterator]: https://docs.python.org/3.9/library/typing.html#typing.Iterator
 
 [colorama]: https://github.com/tartley/colorama
 [colorama-back]: https://github.com/tartley/colorama#colored-output

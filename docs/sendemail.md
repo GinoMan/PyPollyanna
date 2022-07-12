@@ -139,7 +139,7 @@ The protocol/interface spec is enforced using the `ABCMeta` class and the `@abst
 [typing]: https://docs.python.org/3.9/library/typing.html
 [typing-Union]: https://docs.python.org/3.9/library/typing.html#typing.Union
 [typing-Optional]: https://docs.python.org/3.9/library/typing.html#typing.Optional
-[typing-iterable]: https://docs.python.org/3.9/library/typing.html#typing.Iterable
+[typing-iterator]: https://docs.python.org/3.9/library/typing.html#typing.Iterator
 
 [colorama]: https://github.com/tartley/colorama
 [colorama-back]: https://github.com/tartley/colorama#colored-output
