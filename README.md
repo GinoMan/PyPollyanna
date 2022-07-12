@@ -50,10 +50,10 @@ That's where PyPollyanna comes in. I wrote it for my own family's yearly Pollyan
 
 ## Code Documentation ##
 
-1. [Main.PY](https://github.com/GinoMan/PyPollyanna/blob/master/docs/main.md)
-1. [Person.PY](https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md)
-1. [SendEmail.PY](https://github.com/GinoMan/PyPollyanna/blob/master/docs/sendemail.md)
-1. [Templates.PY](https://github.com/GinoMan/PyPollyanna/blob/master/docs/templates.md)
+1. [Main.py](https://github.com/GinoMan/PyPollyanna/blob/master/docs/main.md)
+1. [Person.py](https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md)
+1. [SendEmail.py](https://github.com/GinoMan/PyPollyanna/blob/master/docs/sendemail.md)
+1. [Templates.py](https://github.com/GinoMan/PyPollyanna/blob/master/docs/templates.md)
 1. [Tests](https://github.com/GinoMan/PyPollyanna/blob/master/docs/tests.md)
 1. [Data.csv](https://github.com/GinoMan/PyPollyanna/blob/master/docs/data.md)
 1. [Creds.conf](https://github.com/GinoMan/PyPollyanna/blob/master/docs/creds.md)
