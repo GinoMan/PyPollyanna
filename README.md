@@ -16,22 +16,21 @@ That's where PyPollyanna comes in. I wrote it for my own family's yearly Pollyan
 ### Runtime Requirements ###
 
 - [![Python 3.9+](https://img.shields.io/badge/Platform-Python_3.9%2B-yellow?logo=python&logoColor=white&style=flat)](https://python.org)
-- [![colorama 0.4.4](https://img.shields.io/badge/colorama-0.4.4-yellow?logo=python&logoColor=white&style=flat)](https://pypi.org/project/colorama)
-- [![Jinja2 3.0.3](https://img.shields.io/badge/Jinja2-3.0.3-yellow?logo=jinja&logoColor=white&style=flat)](https://pypi.org/project/Jinja2/)
-- [![minify_html 0.7.0](https://img.shields.io/badge/minify__html-0.7.0-yellow?logo=rust&logoColor=white&style=flat)](https://pypi.org/project/minify-html/)
-- [![progress 1.6](https://img.shields.io/badge/progress-1.6-yellow?logo=python&logoColor=white&style=flat)](https://pypi.org/project/progress/)
+- [![colorama 0.4.4](https://img.shields.io/github/pipenv/locked/dependency-version/GinoMan/PyPollyanna/colorama?color=blue&logo=python&logoColor=white)](https://pypi.org/project/colorama)
+- [![Jinja2 v3.1.2](https://img.shields.io/github/pipenv/locked/dependency-version/GinoMan/PyPollyanna/jinja2?logo=jinja&logoColor=white)](https://pypi.org/project/Jinja2/)
+- [![minify_html 0.7.0](https://img.shields.io/github/pipenv/locked/dependency-version/GinoMan/PyPollyanna/minify-html?color=blue&logo=python&logoColor=white)](https://pypi.org/project/minify-html/)
+- [![progress 1.6](https://img.shields.io/github/pipenv/locked/dependency-version/GinoMan/PyPollyanna/progress?color=blue&logo=python&logoColor=white)](https://pypi.org/project/progress/)
 
 ### Development Requirements ###
 
-- [![check-requirements-txt 1.0.2](https://img.shields.io/badge/check--requirements--txt-1.0.2-yellow?logo=python&logoColor=white&style=flat)](https://pypi.org/project/check-requirements-txt/)
-- [![flake8 4.0.1](https://img.shields.io/badge/flake8-4.0.1-yellow?logo=python&logoColor=white&style=flat)](https://pypi.org/project/flake8/)
-- [![pytest 6.2.5](https://img.shields.io/badge/pytest-6.2.5-yellow?logo=python&logoColor=white&style=flat)](https://pypi.org/project/pytest/)
+- [![check-requirements-txt 1.0.2](https://img.shields.io/github/pipenv/locked/dependency-version/GinoMan/PyPollyanna/dev/check-requirements-txt?color=blue&logo=python&logoColor=white)](https://pypi.org/project/check-requirements-txt/)
+- [![flake8 4.0.1](https://img.shields.io/github/pipenv/locked/dependency-version/GinoMan/PyPollyanna/dev/flake8?color=blue&logo=python&logoColor=white)](https://pypi.org/project/flake8/)
+- [![pytest 6.2.5](https://img.shields.io/github/pipenv/locked/dependency-version/GinoMan/PyPollyanna/dev/pytest?color=blue&logo=python&logoColor=white)](https://pypi.org/project/pytest/)
 
 ### Recommended Environment ###
 
 - [![Editor Visual Studio Code](https://img.shields.io/badge/Editor-Visual%20Studio%20Code-blue?logo=visualstudiocode&logoColor=white&style=flat)](https://code.visualstudio.com)
 - [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-yellow?logo=python&logoColor=white&style=flat)](https://python.org)
-- [![Git 2.36.1+](https://img.shields.io/badge/Git-2.36.1+-green?logo=git&logoColor=white&style=flat)](https://git-scm.com/)
 
 #### Recommended VSCode Plugins ####
 
