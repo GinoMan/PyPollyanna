@@ -142,7 +142,7 @@ This module imports several standard as well as external libraries:
 [PollyannaGroup-init]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__init__self-filename-str---none
 [PollyannaGroup-getitem]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__getitem__self-key-unionstr-int---person
 [PollyannaGroup-str]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__str__self---str
-[PollyannaGroup-iter]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__iter__self---iterableperson
+[PollyannaGroup-iter]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__iter__self---iteratorperson
 [PollyannaGroup-len]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__len__self---int
 [PollyannaGroup-shuffle]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroupshuffleself---none
 

@@ -4,7 +4,7 @@
 
 from csv import DictReader
 from random import choice
-from typing import Union, Iterable
+from typing import Iterator, Union
 
 
 def try_int(string: Union[str, bytes, bytearray],
@@ -100,7 +100,7 @@ class PollyannaGroup:
 			representation += f"{str(person)}\n"
 		return representation
 	
-	def __iter__(self) -> Iterable[Person]:
+	def __iter__(self) -> Iterator[Person]:
 		return iter(self.people)
 	
 	def __len__(self) -> int:

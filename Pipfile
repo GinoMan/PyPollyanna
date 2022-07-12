@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+colorama = ">=0.4.4"
+jinja2 = ">=3.0.3"
+minify-html = ">=0.7.0"
+progress = ">=1.6"
+
+[dev-packages]
+check-requirements-txt = ">=1.0.2"
+flake8 = ">=4.0.1"
+pytest = ">=6.2.5"
+
+[requires]
+python_version = "3.9"

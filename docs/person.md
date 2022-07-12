@@ -106,7 +106,7 @@ of if they are not assigned:
 
 Each entry is on its own line but is all in one string. 
 
-### PollyannaGroup.\_\_iter\_\_(self) -> Iterable\[Person\] ###
+### PollyannaGroup.\_\_iter\_\_(self) -> Iterator\[Person\] ###
 
 Simply returns the iterator for the List of Persons contained in the class enabling use in iteration statements (usually for ... in ... loops).
 
@@ -226,7 +226,7 @@ This resets the state and we try again. Since the references are re-assigned, on
 [PollyannaGroup-init]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__init__self-filename-str---none
 [PollyannaGroup-getitem]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__getitem__self-key-unionstr-int---person
 [PollyannaGroup-str]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__str__self---str
-[PollyannaGroup-iter]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__iter__self---iterableperson
+[PollyannaGroup-iter]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__iter__self---iteratorperson
 [PollyannaGroup-len]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroup__len__self---int
 [PollyannaGroup-shuffle]: https://github.com/GinoMan/PyPollyanna/blob/master/docs/person.md#pollyannagroupshuffleself---none
 
